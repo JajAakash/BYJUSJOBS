@@ -14,7 +14,7 @@ const jobSchema=new Schema({
     skills:String,
     startdate:Date,
     enddate:Date,
-    created:Date,
+    created:String,
     source:String
 })
 
