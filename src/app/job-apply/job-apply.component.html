@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
+        <div class="container-fluid" >
+          <div class="navbar-header" >
+              <a href="#" class="pull-left"><img src="assets/logobyjus.png"></a> 
+          </div>
+        </div>
+</nav>
+
+<div class="container-fluid col-lg-10 ">
+    <div class="row">
+        <div class="card col-md-10">
+            <div class="card-body">
+                <h4 class="jt-24 jt-black jt-light pb4 display-flex ">{{jobDetails.title}}</h4>
+                <h6 class="cn pb4 display-flex" style="margin-top: 1px"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{jobDetails.companyname}}</h6>
+                <p class="loc"><i class="fa fa-black-tie " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</p>
+                <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{jobDetails.location}}</p>
+                <p class="pos "><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted&nbsp;{{jobDetails.created}}</p>
+                <hr>
+                <h6 class="jd-t"><u>Job Description</u></h6><p class="des">{{jobDetails.jd}}</p>
+                <h6 class="jd-t"><u>Experience Required</u>&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</h6><br>
+                <h6 class="jd-t"><u>Salary</u>&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;&nbsp;{{jobDetails.salary}}</h6><br>
+                <h6 class="jd-t"><u>Skills</u></h6>
+                <ul *ngFor="let skill of jobDetails.skills"><li>{{skill}}</li></ul>
+                <button class="btn pull-right"><a href="http://www.youtube.com"></a>Apply Job</button>
+            </div>
+        </div>
+    </div>
+</div>

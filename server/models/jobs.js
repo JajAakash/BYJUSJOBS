@@ -8,14 +8,16 @@ const jobSchema=new Schema({
     jd:String,
     companyname:String,
     location:String,
-    experience:String,
+    experience:[],
     salary:String,
     type:String,
-    skills:String,
+    skills:[],
     startdate:Date,
     enddate:Date,
-    created:String,
-    source:String
+    created:Date,
+    source:String,
+    maxExp:Number,
+    minExp:Number
 })
 
 module.exports=mongoose.model('jobs',jobSchema,'BYJUSJOBS')

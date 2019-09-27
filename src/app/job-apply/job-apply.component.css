@@ -1,0 +1,103 @@
+.navbar-default {
+    background-color: rgba(129,53,136,.98);
+    border-color:black;
+  
+}
+.jt-24 {
+    font-size: 1.5rem;
+    line-height: 1.33333;
+}
+.jt-light {
+    font-weight: 400;
+}
+.jt-black {
+    color: rgba(0,0,0,.9);
+}
+.display-flex {
+    display: flex!important;
+}
+.pb4 {
+    padding-bottom: 5px!important;
+}
+
+.cn{
+    
+    font-size: 1.0rem;
+    line-height: 1.0;
+    color: rgba(0,0,0,.8);
+    font-weight: 500;
+    
+}
+.loc{
+    font-size: 0.9rem;
+    line-height: 1.0;
+    color: rgba(0,0,0,.8);
+    font-weight: 500;
+    
+}
+
+.pos{
+    font-size: 0.7rem;
+    line-height: 1.0;
+    color: rgba(0,0,0,.8);
+    font-weight: 500;
+    
+}
+
+.jd-t{
+    font-size: 1.0rem;
+    line-height: 1.0;
+    color: rgba(0,0,0,.8);
+    font-weight: 500;
+    
+}
+.des{
+    color: rgba(0,0,0,.75);
+    font-size: 0.9rem;
+}
+
+.icon{
+    position :absolute;
+    left:15px;
+    top: 3px;
+    padding: 9px 8px;
+    color: #969592 
+    
+    
+}
+.underline-large{
+    color:#969592;
+    display:inline-block;
+    position:relative;
+    
+  }
+  
+  .underline-large::after{
+    content:'';
+    height:0.6px;
+    width:100%;
+    background:rgba(129,53,136,.98);
+    position:absolute;
+    left:calc(10% - 20%);
+    bottom:-5px;
+    margin-top: 0px
+  /*   another way you can achieve this
+    Check this link: 
+    https://goo.gl/GgRdjz
+    
+    */
+    
+  }
+  hr {
+    widows: 130px;
+    margin-top: 0rem;
+    margin-left: -2.2rem;
+    margin-right: -2.2rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .btn{
+    background-color: rgba(129,53,136,.98);
+    color: white;
+}

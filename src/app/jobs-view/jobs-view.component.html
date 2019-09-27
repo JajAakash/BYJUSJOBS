@@ -1,0 +1,75 @@
+<nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
+    <div class="container-fluid" >
+      <div class="navbar-header" >
+          <a href="#" class="pull-left"><img src="assets/logobyjus.png"></a> 
+      </div>
+    </div>
+</nav>
+
+<div class="alert alert-light" role="alert" *ngIf="jobList?.length >0">
+    <strong>Congratulation!</strong>&nbsp;{{jobList.length}} Jobs found for You!!
+  </div>
+
+<div class="container-fluid col-md-11" *ngIf="jobList?.length >2">
+  <div class="row">
+    <div class="card" style="margin-top: 1.5rem">
+      <div class="card-body">
+          <div class="row" >
+              <div class="col-md-4" *ngFor="let item of jobList">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="company-title"><h5 class="card-title">{{item.title}}</h5><br></div>
+                        <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
+                        <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
+                        <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
+                        <div><button class="btn btn-footer" type="submit" (click)="applyJob(item._id)">Apply</button>
+                          <div class="create pull-right underline-small">Posted:&nbsp;{{item.created}}</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid col-md-9" *ngIf="jobList?.length <=2">
+    <div class="row" >
+      <div class="card col-lg-6" style="margin-top: 1.5rem;" *ngFor="let item of jobList">
+        
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5><br>
+              <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
+              <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
+              <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}}</p>
+              <p class="loc-sal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.skills}}</p>
+              <!-- <div class="loc-sal "><i class="fa fas fa-info cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<p class="text-left">{{item.jd}}</p></div> -->
+              <!-- <p class="card-text loc-sal"><i class="fas fa-info"></i></p> -->
+              <div><button class="btn btn-footer" type="submit">Apply</button>
+                <div class="create pull-right">Posted:&nbsp;{{item.created}}</div>
+              </div>
+            </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+<!-- <div class="col-sm-4" *ngFor="let item of jobList">
+    <div class="card">
+        <div class="card-body">
+            <div class="company-title"><h5 class="card-title">{{item.title}}</h5><br></div>
+            <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
+            <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
+            <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
+            <div><button class="btn btn-footer" type="submit">Apply</button>
+              <div class="create pull-right underline-small">Posted:&nbsp;{{item.created}}</div>
+            </div>
+        </div>
+    </div>
+  </div> -->
+
+
+  

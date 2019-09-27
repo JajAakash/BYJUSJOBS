@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Jobdata } from './jobdata';
 import { InformationService } from '../information.service';
 import { RestService } from '../rest.service';
-import { Http,Response } from '../../../node_modules/@angular/http';
+import { Http,Response } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from '../../../node_modules/rxjs/operators';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })

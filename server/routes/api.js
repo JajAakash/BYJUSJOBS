@@ -13,7 +13,7 @@ mongoose.connect(url,function(err){
 });
 
 router.get('/jobs',function(req,res){
-    console.log('finding all jobs for u');
+    console.log('finding all jobsss for u');
     Jobs.find({}).exec(function(err,jobs){
         if(err){
             console.log("Error fetching while jobs")
@@ -58,6 +58,93 @@ router.get('/jobsin/:location',function(req,res){
 });
 
 
+router.get('/jobs-for/:skills',function(req,res){
+    console.log('finding all jobs 4 u');
+    Jobs.find({skills:req.params.skills}).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details")
+        }else{
+            //console.log(jobs.companyname)
+            res.json(jobs)
+        }
+    })
+});
+
+//double Parameter
+router.get('/jobs/:skills/:location',function(req,res){
+    console.log('finding all jobs for78 u');
+    Jobs.find({ $and: [ { location: req.params.location}, { skills: req.params.skills  } ] }).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details")
+        }else{
+            res.json(jobs)
+        }
+    })
+});
+
+//all params
+router.get('/jobs/:skills/:location/:experience',function(req,res){
+    var exp=parseInt(req.params.experience)
+    // if(req.params.location=="Bengaluru/Bangalore"){
+    //     req.params.location="Bangalore"
+    // }
+    console.log('finding all jobs for78 u');
+    Jobs.find({ $and: [ { location: req.params.location}, { skills: req.params.skills},{$or: [{experience:{$lt:exp}},{ experience: exp }]}]}).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details")
+        }else{
+            res.json(jobs)
+        }
+    })
+});
+
+
+router.get('/jobs-experience/:experience',function(req,res){
+    var exp=parseInt(req.params.experience)
+    console.log('finding all jobs 3 u',req.params.experience);
+    
+    Jobs.find({ $and: [ { maxExp: { $gte:exp  } }, { minExp: { $lte:exp  } }] }).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details",err)
+        }else{
+            res.json(jobs)
+        }
+    })
+});
+
+// // Jobs.aggregate([
+// //     { $project: 
+// //         {
+// //             exp1:{$lt:[exp, { $max: "$experience"}]} 
+// //         } 
+// //     }
+// //  ])
+
+
+
+
+// router.get('/jobs-experience/:experience',function(req,res){
+//     var exp=parseInt(req.params.experience)
+//     console.log('finding all jobs 345 u',req.params.experience,exp);
+    
+//     Jobs.find
+//     (
+//         { $and: [ { maxExp: { $gte:exp  } }, { minExp: { $lte:exp  } }] }
+//         //{experience: exp }
+//         // { exp: { $eq: maxExp } }
+
+//     ).exec(function(err,jobs){
+//         if(err){
+//             console.log("error while fetching your job Details",err)
+//         }else{
+//             res.json(jobs)
+//         }
+//     })
+// });
+
+
+
+
 router.post('/job/listed',function(req,res){
     
     var postJob = new Jobs();
@@ -72,9 +159,12 @@ router.post('/job/listed',function(req,res){
     postJob.skills=req.body.skills;
     postJob.startdate=req.body.startdate;
     postJob.enddate=req.body.enddate;
-    postJob.created=req.body.created;
+    postJob.created=Date.now();
     postJob.source=req.body.source;
-    console.log("222222222222222",postJob.applylink,postJob.skills,postJob.salary,req.body.title)
+    postJob.maxExp=req.body.experience[1];
+    postJob.minExp=req.body.experience[0];
+    postJob.experience=req.body.experience;
+    console.log("222222222222222",postJob.experience,postJob.maxExp,postJob.minExp)
     
     postJob.save(function(err,postedJob){
         console.log("99999999");

@@ -15,14 +15,32 @@ export class JobpostComponent implements OnInit {
   jobData:Jobdata[]
   errorMsg:string;
   jobdataForm:FormGroup;
+  //exp:number[]
 
   constructor(private formbuilder: FormBuilder,private router:Router,private information:InformationService,private postJobService:PostjobService) { }
 
   postJobs(){
-    console.log("88888888888",this.jobdataForm.value)
-    this.postJobService.postJobs(this.jobdataForm.value).subscribe(respdata=>this.jobData=respdata )
+    console.log(this.jobdataForm.value.skills)
+    var skill=this.jobdataForm.value.skills.split(",");
+
+    var exp = this.jobdataForm.value.experience.split("-").map(function(item) {
+    return parseInt(item);
+    });
+
+
+console.log(exp);
+    
+    this.jobdataForm.value.skills=skill;
+    this.jobdataForm.value.experience=exp;
+
+    this.postJobService.postJobs(this.jobdataForm.value).subscribe(respdata=>this.jobData=respdata)
     
   }
+
+  
+//   var str = "Apples are round, and apples are juicy."; 
+// var splitted = str.split(" ", 3); 
+// console.log(splitted)
 
   ngOnInit() {
     this.jobdataForm=this.formbuilder.group({

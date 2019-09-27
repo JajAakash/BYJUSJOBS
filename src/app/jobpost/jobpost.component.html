@@ -60,13 +60,13 @@
                                         <label for="formGroupExampleInput">Salary</label>
                                         <input type="text" class="form-control form-control-sm" placeholder="" formControlName="salary">
                                         <div *ngIf="(jobdataForm.controls['salary'].errors && (jobdataForm.controls['salary'].dirty || jobdataForm.controls['salary'].touched))" class="red">
-                                          <div *ngIf="jobdataForm.controls.salary.errors.required">Skills Required</div>
+                                          <div *ngIf="jobdataForm.controls.salary.errors.required">Experience Required</div>
                                         </div>
                                       </div>
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">City/District</label>
+                                    <label for="Location">City/District</label>
                                     <select class="form-control form-control-sm" id="exampleFormControlSelect1" formControlName="location">
                                         <option>Location</option>
                                       <option>Bangalore/Bengaluru</option>
@@ -75,7 +75,7 @@
                                       <option>Pune</option>
                                       <option>Mumbai</option>
                                     </select>
-                                  </div>  
+                                </div>  
       
                                 <div class="form-group">
                                     <div class="row">
@@ -107,7 +107,9 @@
                                           </div>
                                           <div class="col">
                                             <label for="formGroupExampleInput">Created</label>
-                                            <input type="datetime" class="form-control form-control-sm" placeholder="" formControlNameme="created">
+                                            <div class="md-form">
+                                                    <input placeholder="Selected date" type="date" id="date-picker-example" class="form-control datepicker">
+                                                  </div>
                                           </div>
                                       </div>
                                     </div>
@@ -116,7 +118,7 @@
                                         <label for="exampleFormControlTextarea1">Job Description</label>
                                         <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" formControlName  ="jd"></textarea>
                                     </div>
-                                    <button class="btn " id="submit" (click)="postJobs()" [disabled]="!jobdataForm.valid"style="background-color:rgba(129,53,136,.98); color: white; font-family: GothamSSm">Register</button><br>
+                                    <button class="btn btn" id="submit" (click)="postJobs()" [disabled]="jobdataForm.valid"style="background-color:rgba(129,53,136,.98); color: white;">Register</button><br>
                                     
                                 
                             </form>

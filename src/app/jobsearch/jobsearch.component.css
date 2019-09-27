@@ -1,0 +1,127 @@
+.navbar-default {
+    background-color: rgba(129,53,136,.98);
+    border-color:black;
+  
+}
+
+.active-purple-4 input[type=text]:focus:not([readonly]) {
+    border: 1px solid rgba(129,53,136,.98);
+    box-shadow: 0 0 0 1px rgba(129,53,136,.98);
+    }
+
+    .active-purple-4 input[type=number]:focus:not([readonly]) {
+        border: 1px solid rgba(129,53,136,.98);
+        box-shadow: 0 0 0 1px rgba(129,53,136,.98);
+        }
+
+    
+.exp{
+      box-shadow: 0 0 0 1px rgba(129,53,136,.98); -webkit-box-shadow: none; 
+}
+
+.icon{
+    position :absolute;
+    left:15px;
+    top: 3px;
+    padding: 9px 8px;
+    color: #969592 
+    
+    
+}
+
+.cardsalary{
+    position :absolute;
+    left:80px;
+    bottom:12px;
+    padding: 9px 8px;
+    color: #969592 
+    
+    
+}
+
+.cardicon  {
+    color:  rgba(0,0,0,.7); 
+    
+    
+}
+
+.loc-sal {
+    font-size: 0.9rem;
+    line-height: 1.42857;
+    font-weight: 500;
+    color: rgba(0,0,0,.8);
+}
+
+
+.create{
+    font-size: 0.8rem;
+    line-height: 3.1;
+    font-weight: 600;
+    color: rgba(0,0,0,.6);
+}
+
+.iconcompany{
+    position :absolute;
+    left:12px;
+    top: 66px;
+    padding: 9px 8px;
+    color: #969592 
+}
+
+.namecompany{
+    position :absolute;
+    left:18px;
+    top: 70px;
+    padding: 9px 8px;
+    color: #969592 
+    
+}
+
+.my-select {
+    background-color: white;
+    border: 1px solid silver;
+    padding: 6px 20px;
+    box-shadow: 0px 0px 1px;
+    color: rgba(129,53,136,.98);
+  }
+  /* border-radius: 20px; */
+  /* color: rgba(129,53,136,.98); */
+
+
+
+.col{
+    margin: 0px;
+}
+.t-24 {
+    font-size: 2.5rem;
+    line-height: 1.33333;
+}
+.t-light {
+    font-weight: 200;
+}
+.t-black {
+    color: rgba(0,0,0,.9);
+}
+.display-flex {
+    display: flex!important;
+}
+.pb4 {
+    padding-bottom: 16px!important;
+}
+
+
+/* .footer {
+    position: fixed;
+    height: 10px;
+    background-color: red;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+} */
+
+
+.btn-footer{
+    background-color: rgba(129,53,136,.98);
+    color: white;
+}

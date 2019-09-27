@@ -1,11 +1,11 @@
-export class Jobdata{
+export class JobViewData{
     
     title:string;
     applylink:string;
     jd:string;
     companyname:string;
     location:string;
-    experience:string;
+    experience:number;
     salary:string;
     type:string;
     skills:string;
