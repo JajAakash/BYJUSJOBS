@@ -22,8 +22,16 @@
                         <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
                         <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
                         <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
-                        <div><button class="btn btn-footer" type="submit" (click)="applyJob(item._id)">Apply</button>
-                          <div class="create pull-right underline-small">Posted:&nbsp;{{item.created}}</div>
+                        <div>
+                          <button class="btn btn-footer" type="submit" [disabled]="! item.jobValid" (click)="applyJob(item._id)">Apply</button>
+                          <div class="create pull-right" *ngIf="item.noOfWeeks==1 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} week ago</div>
+                          <div class="create pull-right" *ngIf="item.noOfWeeks>1 && item.noOfDays<30 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} weeks ago</div>
+                          <div class="create pull-right" *ngIf="item.noOfMonths==1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Month ago</div>
+                          <div class="create pull-right" *ngIf="item.noOfMonths>1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Months ago</div>
+                          <div class="create pull-right" *ngIf="item.noOfDays==1 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} day ago</div>
+                          <div class="create pull-right" *ngIf="item.noOfDays>1 && item.noOfDays<7 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} days ago</div>
+                          <div class="create pull-right jb-to" *ngIf="item.noOfDays==0 && item.jobValid">Posted:&nbsp;Today </div>
+                          <div class="create pull-right jb-end" *ngIf="! item.jobValid">No longer accepting applications  </div>
                         </div>
                     </div>
                 </div>
@@ -43,11 +51,17 @@
               <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
               <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
               <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}}</p>
-              <p class="loc-sal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.skills}}</p>
-              <!-- <div class="loc-sal "><i class="fa fas fa-info cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<p class="text-left">{{item.jd}}</p></div> -->
-              <!-- <p class="card-text loc-sal"><i class="fas fa-info"></i></p> -->
-              <div><button class="btn btn-footer" type="submit">Apply</button>
-                <div class="create pull-right">Posted:&nbsp;{{item.created}}</div>
+              <!-- <p class="loc-sal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.skills}}</p> -->
+              <div>
+                <button class="btn btn-footer" type="submit" [disabled]="! item.jobValid" (click)="applyJob(item._id)">Apply</button>
+                <div class="create pull-right" *ngIf="item.noOfWeeks==1 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} week ago</div>
+                <div class="create pull-right" *ngIf="item.noOfWeeks>1 && item.noOfDays<30 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} weeks ago</div>
+                <div class="create pull-right" *ngIf="item.noOfMonths==1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Month ago</div>
+                <div class="create pull-right" *ngIf="item.noOfMonths>1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Months ago</div>
+                <div class="create pull-right" *ngIf="item.noOfDays==1 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} day ago</div>
+                <div class="create pull-right" *ngIf="item.noOfDays>1 && item.noOfDays<7 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} days ago</div>
+                <div class="create pull-right jb-to" *ngIf="item.noOfDays==0 && item.jobValid">Posted:&nbsp;Today </div>
+                <div class="create pull-right jb-end" *ngIf="! item.jobValid">No longer accepting applications  </div>
               </div>
             </div>
       </div>

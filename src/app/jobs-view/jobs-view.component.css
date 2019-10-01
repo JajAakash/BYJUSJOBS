@@ -54,7 +54,7 @@
 
 
 .create{
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 3;
     font-weight: 600;
     color: rgba(0,0,0,.6);
@@ -157,4 +157,11 @@ jd {
     text-decoration-line: underline;
     text-decoration-style: initial;
     text-decoration-color: initial;
+}
+.jb-end{
+    color: red
+}
+
+.jb-to{
+    color: green
 }

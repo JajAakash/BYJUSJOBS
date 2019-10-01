@@ -50,10 +50,12 @@
     color: rgba(0,0,0,.8);
     font-weight: 500;
     
+    
 }
 .des{
     color: rgba(0,0,0,.75);
     font-size: 0.9rem;
+    text-align: justify;
 }
 
 .icon{

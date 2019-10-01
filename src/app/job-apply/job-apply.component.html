@@ -14,14 +14,19 @@
                 <h6 class="cn pb4 display-flex" style="margin-top: 1px"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{jobDetails.companyname}}</h6>
                 <p class="loc"><i class="fa fa-black-tie " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</p>
                 <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{jobDetails.location}}</p>
-                <p class="pos "><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted&nbsp;{{jobDetails.created}}</p>
+                <p class="pos" *ngIf="jobDetails.noOfWeeks==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfWeeks}} week ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfWeeks>1 && jobDetails.noOfDays<30"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfWeeks}} weeks ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfMonths==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfMonths}} Month ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfMonths>1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfMonths}} Months ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfDays==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} day ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfDays>1 && jobDetails<7"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} days ago</p>
                 <hr>
                 <h6 class="jd-t"><u>Job Description</u></h6><p class="des">{{jobDetails.jd}}</p>
                 <h6 class="jd-t"><u>Experience Required</u>&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</h6><br>
                 <h6 class="jd-t"><u>Salary</u>&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;&nbsp;{{jobDetails.salary}}</h6><br>
                 <h6 class="jd-t"><u>Skills</u></h6>
                 <ul *ngFor="let skill of jobDetails.skills"><li>{{skill}}</li></ul>
-                <button class="btn pull-right"><a href="http://www.youtube.com"></a>Apply Job</button>
+                <a href="{{jobDetails.applylink}}" class="btn pull-right" role="button">Apply Job</a>
             </div>
         </div>
     </div>

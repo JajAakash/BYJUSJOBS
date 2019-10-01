@@ -13,5 +13,6 @@ export class JobData{
     enddate:Date;
     created:string;
     source:string;
+    diffInDays:Number;
 
 }

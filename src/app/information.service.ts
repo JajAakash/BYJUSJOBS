@@ -10,9 +10,26 @@ export class InformationService {
   experience:number;
   jobid:string
   jobviewlist:JobViewData[];
-  
-  constructor() {console.log("kkkkkkkkkkkkk",this.jobviewlist) }
+  noOfDays:number;
+  noOfWeeks:number;
+  noOfMonths:number;
+  currentDate: Date = new Date();
+  days:any=1000*60*60*24;
+  constructor(){} 
 
+  jobs(filterjob:any){
+    for (let i of filterjob) {
+      let secondDate=new Date(this.currentDate);
+      let firstDate = new Date(i.created);
+      let diffInDays=Math.round(Math.abs((secondDate.getTime() - firstDate.getTime())/(this.days)));
+      let noOfWeeks=Math.floor(diffInDays/7);
+      let noOfMonths=Math.floor(diffInDays/30);
+      i.noOfDays=diffInDays;
+      i.noOfWeeks=noOfWeeks;
+      i.noOfMonths=noOfMonths;
+      i.jobValid=(new Date(i.enddate)>new Date(this.currentDate));
+  }
+}
   postJobUrl='http://localhost:5000/byjusjobs/job/listed';
   jobSearch='http://localhost:5000/byjusjobs/jobs';
   jobbylocationurl='http://localhost:5000/byjusjobs/jobsin/';

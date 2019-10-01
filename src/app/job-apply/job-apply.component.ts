@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from '../information.service';
 import { JobApplyService } from './job-apply.service';
-
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
@@ -10,14 +9,31 @@ import { JobApplyService } from './job-apply.service';
 export class JobApplyComponent implements OnInit {
   jobDetails:any[];
   experience:string;
+  currentDate: Date = new Date();
 
   constructor(private infoservice:InformationService,private applyService:JobApplyService) { }
 
-  ngOnInit() {
-    this.applyService.jobApplyService().subscribe(resJobs=>this.jobDetails=resJobs)
+  async jobs(){
+    this.jobDetails= await this.applyService.jobApplyService().toPromise();
     
-    //this.experience=this.jobDetails.experience[0]+"-"+this.jobDetails[1]
-     //console.log("77777777777",this.jobDetails[1])
+    for( let i in this.jobDetails){
+    
+      if(i=="created"){
+        let secondDate=new Date(this.currentDate);
+        let firstDate = new Date(this.jobDetails[i]);
+        let diffInDays=Math.round(Math.abs((secondDate.getTime() - firstDate.getTime())/(this.infoservice.days)));
+        let noOfWeeks=Math.floor(diffInDays/7);
+        let noOfMonths=Math.floor(diffInDays/30);
+        let noOfDays=diffInDays;
+        
+        this.jobDetails['noOfDays']=diffInDays;
+        this.jobDetails['noOfWeeks']=noOfWeeks;
+        this.jobDetails['noOfMonths']=noOfMonths;
+      }
+    }
+  }
+  ngOnInit() {
+    this.jobs();
   }
 
 }

@@ -40,7 +40,7 @@
 }
 
 .cardicon  {
-    color:  rgba(0,0,0,.7); 
+    color:  rgba(0,0,0,.7);
     
     
 }
@@ -54,7 +54,7 @@
 
 
 .create{
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 3.1;
     font-weight: 600;
     color: rgba(0,0,0,.6);
@@ -110,18 +110,13 @@
 }
 
 
-/* .footer {
-    position: fixed;
-    height: 10px;
-    background-color: red;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-bottom: 0px;
-} */
-
-
 .btn-footer{
     background-color: rgba(129,53,136,.98);
     color: white;
+}
+.jb-end{
+color: red
+}
+.jb-to{
+color: green
 }

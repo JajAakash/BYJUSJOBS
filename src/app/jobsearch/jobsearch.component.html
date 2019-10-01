@@ -54,14 +54,24 @@
                 <div class="card-body">
                     <div class="row">
                             <div class="col-sm-12 col-lg-6" *ngFor="let item of filterjob ">
-                                <div class="card ">
-                                    <div class="card-body card h-100" style="height: 100%">
+                                <div class="card h-100">
+                                    <div class="card-body">
                                         <h5 class="card-title"><h5 class="card-title">{{item.title}}</h5></h5><br>
                                         <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.companyname}}</h6></div>
                                         <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
                                         <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
-                                        <div><button class="btn btn-footer" type="submit" id="submit" (click)="applyJob(item._id)">Apply</button>
-                                        <div class="create pull-right">Posted:&nbsp;{{diffInDays}}</div></div>
+                                        <div>
+                                            <button class="btn btn-footer" [disabled]="! item.jobValid" type="submit" id="submit" (click)="applyJob(item._id)">Apply</button>
+                                            
+                                            <div class="create pull-right" *ngIf="item.noOfWeeks==1 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} week ago</div>
+                                            <div class="create pull-right" *ngIf="item.noOfWeeks>1 && item.noOfDays<30 && item.jobValid">Posted:&nbsp;{{item.noOfWeeks}} weeks ago</div>
+                                            <div class="create pull-right" *ngIf="item.noOfMonths==1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Month ago</div>
+                                            <div class="create pull-right" *ngIf="item.noOfMonths>1 && item.jobValid">Posted:&nbsp;{{item.noOfMonths}} Months ago</div>
+                                            <div class="create pull-right" *ngIf="item.noOfDays==1 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} day ago</div>
+                                            <div class="create pull-right" *ngIf="item.noOfDays>1 && item.noOfDays<7 && item.jobValid">Posted:&nbsp;{{item.noOfDays}} days ago</div>
+                                            <div class="create pull-right jb-to" *ngIf="item.noOfDays==0 && item.jobValid">Posted:&nbsp;Today </div>
+                                            <div class="create pull-right jb-end" *ngIf="! item.jobValid">No longer accepting applications </div>
+                                        </div>
                                     </div>    
                                 </div>
                             </div>
@@ -74,53 +84,3 @@
       
     
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="card" style="margin-top: 1.5rem">
-        <div class="card-body">
-            <div class="row" >
-                        
-                    <div class="col-sm-12 col-lg-6" *ngFor="let item of filterjob ">
-                            <div class="card ">
-                                <div class="card-body card h-100" style="height: 100%">
-                                    <h5 class="card-title"><h5 class="card-title">{{item.title}}</h5></h5><br>
-                                    <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.companyname}}</h6></div>
-                                    <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
-                                    <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
-                                    <!-- <p style="margin-bottom: 100px"><button type="button" class="btn btn-outline-success btn pull-right">Apply</button></p>
-                                         -->
-                                    <!-- <div><button class="btn btn-footer" type="submit" id="submit" (click)="applyJob(item._id)">Apply</button>
-                                        <div class="create pull-right">Posted:&nbsp;{{diffInDays}}</div>
-                                    </div>
-                                    
-                                </div>
-                    </div>
-                            
-                
-            </div>
-            
-        </div>
-    </div>
- --> 
