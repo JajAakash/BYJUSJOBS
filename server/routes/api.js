@@ -112,39 +112,6 @@ router.get('/jobs-experience/:experience',function(req,res){
     })
 });
 
-// // Jobs.aggregate([
-// //     { $project: 
-// //         {
-// //             exp1:{$lt:[exp, { $max: "$experience"}]} 
-// //         } 
-// //     }
-// //  ])
-
-
-
-
-// router.get('/jobs-experience/:experience',function(req,res){
-//     var exp=parseInt(req.params.experience)
-//     console.log('finding all jobs 345 u',req.params.experience,exp);
-    
-//     Jobs.find
-//     (
-//         { $and: [ { maxExp: { $gte:exp  } }, { minExp: { $lte:exp  } }] }
-//         //{experience: exp }
-//         // { exp: { $eq: maxExp } }
-
-//     ).exec(function(err,jobs){
-//         if(err){
-//             console.log("error while fetching your job Details",err)
-//         }else{
-//             res.json(jobs)
-//         }
-//     })
-// });
-
-
-
-
 router.post('/job/listed',function(req,res){
     
     var postJob = new Jobs();
@@ -154,20 +121,33 @@ router.post('/job/listed',function(req,res){
     postJob.companyname=req.body.companyname;
     postJob.location=req.body.location;
     postJob.experience=req.body.experience;
-    postJob.salary=req.body.salary;
     postJob.type=req.body.type;
     postJob.skills=req.body.skills;
     postJob.startdate=req.body.startdate;
     postJob.enddate=req.body.enddate;
     postJob.created=Date.now();
-    postJob.source=req.body.source;
+    if(req.body.salary===""){
+        postJob.salary="Not specified"
+    }
+    else{postJob.salary=req.body.salary; 
+    }
+
+    if(req.body.source===""){
+        postJob.source="Not specified"
+    }
+    else
+    {
+        postJob.source=req.body.source;
+    }
+
+    
     postJob.maxExp=req.body.experience[1];
     postJob.minExp=req.body.experience[0];
     postJob.experience=req.body.experience;
-    console.log("222222222222222",postJob.experience,postJob.maxExp,postJob.minExp)
+    
     
     postJob.save(function(err,postedJob){
-        console.log("99999999");
+        console.log("source salary",postJob.salary,postJob.source);
         if(err){
             console.log(err,"Error saving Jobs")
         }

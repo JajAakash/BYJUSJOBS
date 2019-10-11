@@ -26,17 +26,17 @@
   /* background-color: rgba(129,52,136,.98); */
 }
 .subtn{
-  background-color: rgba(197, 61, 209, 0.98);
+  background-color: rgba(205, 63, 218, 0.98);
   color: #fff;
   margin-top: 15px;
   border: none;
   border-radius: 2px;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    font-size: 1.2rem;
-    font-weight: 550;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  font-size: 1.2rem;
+  font-weight: 550;
     font-family: inherit;
     overflow: hidden;
     text-align: center;
@@ -116,6 +116,71 @@ input[type="text"], input[type="email"], input[type="password"] {
 .page__header {
   color: rgba(255,255,255,.85);
   text-align: center;
-  font-weight: 400;
-  margin-top: 3%
+  font-weight: 600;
+  margin-top: 2%
+}
+
+.active-white-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+.active-white-4 input[type=date]:focus:not([writeonly]) {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+.active-white-5 textarea[type=text]:focus:not([writeonly]) {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+
+.footercopy {
+  margin: 2em 0 1em;
+  text-align: center;
+}
+
+.footercopy p {
+  font-size: .9em;
+  color: #fff;
+  line-height: 1.8em;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.footercopy p a {
+  color: #fff;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+}
+
+/* .header {
+  margin: 2em 0 1em;
+  text-align: center;
+}
+
+.header h2 {
+  font-size: 1em;
+  color: #fff;
+  line-height: 1.8em;
+  letter-spacing: 1px;
+  font-weight: 100;
+} */
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 100px;
+  border: 0.1px solid #fff !important;
+  box-shadow: 0 0 0 1px #fff !important;
+  background-color: rgba(129,52,136,.98) !important;
+  color: #fff;
+  list-style-type: none;
+}
+.ck-toolbar{
+  background-color: black !important;
+}
+.btn-outline-primary{
+color: #fff
 }

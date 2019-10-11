@@ -10,7 +10,14 @@ import { InformationService } from './information.service';
 import { JobsearchComponent } from './jobsearch/jobsearch.component';
 import { JobsViewComponent } from './jobs-view/jobs-view.component';
 import { JobApplyComponent } from './job-apply/job-apply.component';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import{MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule,MatIconModule } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
+const material=[MatDatepickerModule,MatFormFieldModule,
+  MatInputModule,
+  MatNativeDateModule];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +30,15 @@ import { JobApplyComponent } from './job-apply/job-apply.component';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule,
+    MatPaginatorModule,
+    MatIconModule,
+    material
+    
   ],
+  exports:[MatDatepickerModule, 
+    MatNativeDateModule],
   providers: [
     RestService,
     InformationService

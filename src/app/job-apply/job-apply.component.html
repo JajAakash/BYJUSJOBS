@@ -21,7 +21,8 @@
                 <p class="pos" *ngIf="jobDetails.noOfDays==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} day ago</p>
                 <p class="pos" *ngIf="jobDetails.noOfDays>1 && jobDetails<7"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} days ago</p>
                 <hr>
-                <h6 class="jd-t"><u>Job Description</u></h6><p class="des">{{jobDetails.jd}}</p>
+                <h6 class="jd-t"><u>Job Description</u></h6><p class="des" id="jdesc"></p>
+                <!-- <ckeditor data="{{jobDetails.jd}}" [editor]="Editor" disabled="false"></ckeditor> -->
                 <h6 class="jd-t"><u>Experience Required</u>&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</h6><br>
                 <h6 class="jd-t"><u>Salary</u>&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;&nbsp;{{jobDetails.salary}}</h6><br>
                 <h6 class="jd-t"><u>Skills</u></h6>

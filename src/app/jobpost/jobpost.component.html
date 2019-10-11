@@ -1,138 +1,135 @@
 <body>
-    <nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
-        <div class="container-fluid" >
-          <div class="navbar-header" >
-              <a href="#" class="pull-left"><img src="assets/logobyjus.png"></a> 
-          </div>
-        </div>
-    </nav>
-    
-    <div class="container-fluid">
-        
-    
-                    
-                    <div class="col-md-6">
-                        <h2 class="page__header">Post your job and find talented candidates.</h2>
+  <nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
+    <div class="container-fluid" >
+      <div class="navbar-header" >
+        <a href="jobs" class="pull-left"><img src="assets/logobyjus.png"></a> 
+      </div>
+    </div>    
+  </nav>
 
-                            <div class="card bg border-secondary lg-2" style="max-width: 70rem; margin-top: 20px;">
-                            <div class="card-body text-secondary">
-                              
-                                <form [formGroup]="jobdataForm" style="background-color: transparent;">
-          
-                                    <div class="form-group rowh">
-                                        <label class="labtxt" for="companyname">Company Name *</label>
-                                        <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="" formControlName="companyname">
-                                        <div *ngIf="(jobdataForm.controls['companyname'].errors && (jobdataForm.controls['companyname'].dirty || jobdataForm.controls['companyname'].touched))" class="red">
-                                            <div *ngIf="jobdataForm.controls.companyname.errors.required">Please Enter Company Name</div>
-                                          </div>
-          
-                                          <div class="form-group rowh">
-                                          </div>
-                                    <div class="row">
-                                        <div class="col">
-                                          <label class="labtxt" for="formGroupExampleInput">Title *</label>
-                                          <input type="text" class="form-control form-control-sm" placeholder="" formControlName="title">
-                                          <div *ngIf="(jobdataForm.controls['title'].errors && (jobdataForm.controls['title'].dirty || jobdataForm.controls['title'].touched))" class="red">
-                                              <div *ngIf="jobdataForm.controls.title.errors.required">Please Enter Company name</div>
-                                          </div>
-                                        </div>
-                                        <div class="col">
-                                          <label class="labtxt" for="formGroupExampleInput">Type *</label>
-                                          <input type="text" class="form-control form-control-sm" placeholder="" formControlName="type">
-                                        </div>
-                                    </div>
-                                  </div>
-          
-                                  <div class="form-group rowh">
-                                      <label class="labtxt" for="formGroupExampleInput">Skills *</label>
-                                      <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="" formControlName="skills">
-                                      <div *ngIf="(jobdataForm.controls['skills'].errors && (jobdataForm.controls['skills'].dirty || jobdataForm.controls['skills'].touched))" class="red">
-                                          <div *ngIf="jobdataForm.controls.skills.errors.required">Skills Required</div>
-                                      </div>
-                                  </div>
-          
-                                  <div class="form-group rowh">
-                                      <div class="row">
-                                          <div class="col">
-                                            <label class="labtxt" for="formGroupExampleInput">Experience *</label>
-                                            <input type="text" class="form-control form-control-sm" placeholder="" formControlName="experience">
-                                          </div>
-                                          <div class="col">
-                                            <label class="labtxt" for="formGroupExampleInput">Salary *</label>
-                                            <input type="text" class="form-control form-control-sm" placeholder="" formControlName="salary">
-                                            <div *ngIf="(jobdataForm.controls['salary'].errors && (jobdataForm.controls['salary'].dirty || jobdataForm.controls['salary'].touched))" class="red">
-                                              <div *ngIf="jobdataForm.controls.salary.errors.required">Experience Required</div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
 
-                                    <div class="form-group rowh">
-                                        <label class="labtxt" for="formGroupExampleInput">Job link *</label>
-                                        <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="Paste Your Job Link Here" formControlName="applylink">
-                                        <div *ngIf="(jobdataForm.controls['applylink'].errors && (jobdataForm.controls['applylink'].dirty || jobdataForm.controls['applylink'].touched))" class="red">
-                                            <div *ngIf="jobdataForm.controls.applylink.errors.required">please Enter Job Apply link</div>
-                                          </div>
-                                    </div>
+<div class="container-fluid">
+  <div class="row">
+    <h2 class="page__header" style="margin-left:5%">Post your job and find talented candidates.</h2>
+    <div class="col-md-6" style="margin-left:5%">
+      <div class="card bg border-secondary lg-2" style="max-width: 70rem; margin-top: 20px;">
+        <div class="card-body text-secondary">
+          <form [formGroup]="jobdataForm">
+            <div class="form-group active-white-4 rowh">
+              <label class="labtxt" for="companyname">Company Name *</label>
+              <input type="text" class="form-control form-control-sm" placeholder="" formControlName="companyname">
+              <div *ngIf="(jobdataForm.controls['companyname'].errors && (jobdataForm.controls['companyname'].dirty || jobdataForm.controls['companyname'].touched))" class="red">
+                <div *ngIf="jobdataForm.controls.companyname.errors.required">Please Enter Company Name</div>
+              </div>
+            </div>
 
-                                    <div class="form-group rowh">
-                                        <div class="row">
-                                            <div class="col">
-                                              <label class="labtxt" for="formGroupExampleInput">City/District *</label>
-                                              <input type="text" class="form-control form-control-sm" placeholder="" formControlName="experience">
-                                            </div>
-                                            <div class="col">
-                                              <label class="labtxt" for="formGroupExampleInput">Source *</label>
-                                              <input type="text" class="form-control form-control-sm" placeholder="" formControlName="salary">
-                                              <div *ngIf="(jobdataForm.controls['salary'].errors && (jobdataForm.controls['salary'].dirty || jobdataForm.controls['salary'].touched))" class="red">
-                                                <div *ngIf="jobdataForm.controls.salary.errors.required">Experience Required</div>
-                                              </div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    <!-- <div class="form-group">
-                                        <label class="labtxt" type="text" for="Location">City/District</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="" name="source" formControlName="source">
-                                        <select class="form-control form-control-sm" id="exampleFormControlSelect1" formControlName="location">
-                                            <option>Location</option>
-                                          <option>Bangalore/Bengaluru</option>
-                                          <option>Hyderabad</option>
-                                          <option>Chennai</option>
-                                          <option>Pune</option>
-                                          <option>Mumbai</option>
-                                        </select>
-                                    </div>   -->
-          
-                                    <div class="form-group rowh">
-                                        <div class="row">
-                                            <div class="col">
-                                              <label class="labtxt" for="formGroupExampleInput">Start Date *</label>
-                                              <input type="date" class="form-control form-control-sm ta-cl" placeholder="" formControlName="startdate">
-                                            </div>
-                                            <div class="col">
-                                              <label class="labtxt " for="formGroupExampleInput">End date *</label>
-                                              <input type="date" class="form-control ta-cl form-control-sm" placeholder="" formControlName="enddate">
-                                            </div>
-                                        </div>
-                                      </div>
-          
-                                      
-          
-          
-                                      
-                                        <div class="form-group rowh">
-                                            <label class="labtxt" >Job Description *</label>
-                                            <textarea class="form-control form-control-sm ta-cl" id="exampleFormControlTextarea1" formControlName  ="jd"></textarea>
-                                        </div>
-                                        <button class="btn-lg btn-block subtn" id="submit" (click)="postJobs()" [disabled]="jobdataForm.valid">Post job requirements</button><br>
-                                        
-                                    
-                                </form>
-                                
-                            </div>
+            <div class="form-group rowh active-white-4">
+                <div class="row">
+                  <div class="col">
+                    <label class="labtxt" for="title">Title *</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="" formControlName="title">
+                    <div *ngIf="(jobdataForm.controls['title'].errors && (jobdataForm.controls['title'].dirty || jobdataForm.controls['title'].touched))" class="red">
+                      <div *ngIf="jobdataForm.controls.title.errors.required">Please Enter title</div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <label class="labtxt" for="formGroupExampleInput">Type *</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="" formControlName="type">
+                    <div *ngIf="(jobdataForm.controls['type'].errors && (jobdataForm.controls['type'].dirty || jobdataForm.controls['type'].touched))" class="red">
+                      <div *ngIf="jobdataForm.controls.type.errors.required">Type Require</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group rowh active-white-4">
+                    <label class="labtxt" for="formGroupExampleInput">Skills *</label>
+                    <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="BCA,B.E,B.Tech" formControlName="skills">
+                    <div *ngIf="(jobdataForm.controls['skills'].errors && (jobdataForm.controls['skills'].dirty || jobdataForm.controls['skills'].touched))" class="red">
+                      <div *ngIf="jobdataForm.controls.skills.errors.required">Skills Required</div>
+                    </div>
+                </div>
+
+                <div class="form-group rowh active-white-4 ">
+                  <div class="row">
+                    <div class="col">
+                      <label class="labtxt" for="experience">Experience *</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="" formControlName="experience">
+                      <div *ngIf="(jobdataForm.controls['experience'].errors && (jobdataForm.controls['experience'].dirty || jobdataForm.controls['experience'].touched))" class="red">
+                        <div *ngIf="jobdataForm.controls.experience.errors.required">Experience require</div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <label class="labtxt" for="salary">Salary *</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="" formControlName="salary">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group rowh active-white-4">
+                  <label class="labtxt" for="formGroupExampleInput">Job link *</label>
+                  <input type="text" class="form-control form-control-sm" id="formGroupExampleInput" placeholder="Paste Your Job Link Here" formControlName="applylink">
+                  <div *ngIf="(jobdataForm.controls['applylink'].errors && (jobdataForm.controls['applylink'].dirty || jobdataForm.controls['applylink'].touched))" class="red">
+                    <div *ngIf="jobdataForm.controls.applylink.errors.required">link require</div>
+                  </div>
+                </div>
+
+
+                <div class="form-group rowh active-white-4">
+                  <div class="row">
+                    <div class="col">
+                      <label class="labtxt" for="location">City/District *</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="" formControlName="location">
+                      <div *ngIf="(jobdataForm.controls['location'].errors && (jobdataForm.controls['location'].dirty || jobdataForm.controls['location'].touched))" class="red">
+                        <div *ngIf="jobdataForm.controls.location.errors.required">Job location require</div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <label class="labtxt" for="source">Source *</label>
+                      <input type="text" class="form-control form-control-sm" placeholder="" formControlName="source">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group rowh active-white-4">
+                    <div class="row">
+                        <div class="col">
                             
+                          <label class="labtxt" for="formGroupExampleInput">Start Date *</label>
+                          <input type="date" class="form-control form-control-sm ta-cl" placeholder="" formControlName="startdate">
                         </div>
-          
-      
+                        <div class="col">
+                          <label class="labtxt " for="formGroupExampleInput">End date *</label>
+                          <input type="date" class="form-control ta-cl form-control-sm" placeholder="" formControlName="enddate">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group rowh active-white-5">
+                  <label class="labtxt" >Job Description *</label>
+                  <ckeditor [editor]="Editor" (change)="onChange($event)" tagName="textarea"></ckeditor>
+                  <!-- <textarea type="text" class="form-control form-control-sm ta-cl" id="exampleFormControlTextarea1" formControlName  ="jd"></textarea> -->
+                </div>
+
+                <button class="btn-lg btn-block subtn" id="submit" (click)="postJobs()" [disabled]="!jobdataForm.valid">Post job requirements</button>
+                <a href = "jobs" class="btn-lg btn-block subtn" id="submit" >View jobs</a>
+                
+                
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- copyright -->
+		<div class="footercopy">
+			<p>© 2019 BYJU'S JOB portal. All rights reserved | Design by <a href="https://byjus.com/" target="_blank">Aakash Jaj</a></p>
+		</div>
     </div>
+  </div>
+</div>
+</body>
+    
+    
     

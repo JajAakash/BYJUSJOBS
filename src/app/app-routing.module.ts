@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
 import { JobpostComponent } from './jobpost/jobpost.component';
 import { JobsearchComponent } from './jobsearch/jobsearch.component';

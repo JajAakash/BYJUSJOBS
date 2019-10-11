@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./jobsearch.component.css']
 })
 export class JobsearchComponent implements OnInit {
+  
   current=new Date();
-  joblist:JobData[];
+  joblist:JobData;
   filterjob:any[];
   jobsearchForm:FormGroup;
   currentDate: Date = new Date();
   days:any=1000*60*60*24;
+  datalength:number;
 
   constructor(private router:Router,private jobService:JobsearchService,private formbuilder: FormBuilder,private infoservice:InformationService){}
    
@@ -34,6 +36,7 @@ export class JobsearchComponent implements OnInit {
   }
   async jobsearch(){
     this.filterjob= await this.jobService.getJobs().toPromise();
+    this.datalength=this.filterjob.length
     this.infoservice.jobs(this.filterjob);
   }
    

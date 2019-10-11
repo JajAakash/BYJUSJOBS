@@ -9,10 +9,10 @@
     box-shadow: 0 0 0 1px rgba(129,53,136,.98);
     }
 
-    .active-purple-4 input[type=number]:focus:not([readonly]) {
-        border: 1px solid rgba(129,53,136,.98);
-        box-shadow: 0 0 0 1px rgba(129,53,136,.98);
-        }
+.active-purple-4 input[type=number]:focus:not([readonly]) {
+    border: 1px solid rgba(129,53,136,.98);
+    box-shadow: 0 0 0 1px rgba(129,53,136,.98);
+}
 
     
 .exp{
@@ -119,4 +119,7 @@ color: red
 }
 .jb-to{
 color: green
+}
+.viewcard{
+    margin-top: 20px;
 }

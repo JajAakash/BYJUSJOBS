@@ -48,13 +48,12 @@
                 </form>
             </div>
         </div>
-    
-
         <div class="card" style="margin-top: 1.5rem">
                 <div class="card-body">
                     <div class="row">
-                            <div class="col-sm-12 col-lg-6" *ngFor="let item of filterjob ">
-                                <div class="card h-100">
+                            <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob ">
+                                
+                                <div class="card h-100" >
                                     <div class="card-body">
                                         <h5 class="card-title"><h5 class="card-title">{{item.title}}</h5></h5><br>
                                         <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{item.companyname}}</h6></div>
@@ -76,6 +75,10 @@
                                 </div>
                             </div>
                     </div>
+                    <!-- <mat-paginator [length]=datalength
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator> -->
                 </div>
         </div>
     </div>
