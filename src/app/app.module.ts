@@ -15,6 +15,7 @@ import{MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule,MatIconModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const material=[MatDatepickerModule,MatFormFieldModule,
   MatInputModule,
   MatNativeDateModule];
@@ -34,7 +35,8 @@ const material=[MatDatepickerModule,MatFormFieldModule,
     CKEditorModule,
     MatPaginatorModule,
     MatIconModule,
-    material
+    material,
+    BrowserAnimationsModule
     
   ],
   exports:[MatDatepickerModule, 

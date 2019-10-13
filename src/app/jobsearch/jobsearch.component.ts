@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { JobsearchService } from './jobsearch.service';
 import { JobData } from './jobData';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InformationService } from '../information.service';
 import { Router } from '@angular/router';
+import {MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'app-jobsearch',
@@ -14,11 +15,15 @@ export class JobsearchComponent implements OnInit {
   
   current=new Date();
   joblist:JobData;
-  filterjob:any[];
+  filterjob:any;
   jobsearchForm:FormGroup;
   currentDate: Date = new Date();
   days:any=1000*60*60*24;
-  datalength:number;
+  datalength:any;
+  datasource:any
+  p: Number = 1;
+  count: Number = 5;
+  @ViewChild(MatPaginator,{static: true}) paginator:MatPaginator;
 
   constructor(private router:Router,private jobService:JobsearchService,private formbuilder: FormBuilder,private infoservice:InformationService){}
    
@@ -38,6 +43,9 @@ export class JobsearchComponent implements OnInit {
     this.filterjob= await this.jobService.getJobs().toPromise();
     this.datalength=this.filterjob.length
     this.infoservice.jobs(this.filterjob);
+    //this.datasource=this.filterjob;
+    this.filterjob.paginator=this.paginator;
+    console.log("paginator=====",this.filterjob.paginator)
   }
    
   ngOnInit() {

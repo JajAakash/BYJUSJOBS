@@ -48,10 +48,11 @@
                 </form>
             </div>
         </div>
+
         <div class="card" style="margin-top: 1.5rem">
                 <div class="card-body">
                     <div class="row">
-                            <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob ">
+                            <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob">
                                 
                                 <div class="card h-100" >
                                     <div class="card-body">
@@ -71,14 +72,19 @@
                                             <div class="create pull-right jb-to" *ngIf="item.noOfDays==0 && item.jobValid">Posted:&nbsp;Today </div>
                                             <div class="create pull-right jb-end" *ngIf="! item.jobValid">No longer accepting applications </div>
                                         </div>
-                                    </div>    
+                                        
+                                    </div>
+                                        
                                 </div>
                             </div>
+
+                            <mat-paginator [length]=filterjob.length
+                            [pageSize]="3"
+                            [pageSizeOptions]="[5, 10, 25, 100]">
+                        
+                            </mat-paginator>
+                            
                     </div>
-                    <!-- <mat-paginator [length]=datalength
-              [pageSize]="5"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-            </mat-paginator> -->
                 </div>
         </div>
     </div>
