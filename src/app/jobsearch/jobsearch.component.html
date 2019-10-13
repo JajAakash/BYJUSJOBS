@@ -52,6 +52,7 @@
         <div class="card" style="margin-top: 1.5rem">
                 <div class="card-body">
                     <div class="row">
+                        
                             <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob">
                                 
                                 <div class="card h-100" >
@@ -77,12 +78,6 @@
                                         
                                 </div>
                             </div>
-
-                            <mat-paginator [length]=filterjob.length
-                            [pageSize]="3"
-                            [pageSizeOptions]="[5, 10, 25, 100]">
-                        
-                            </mat-paginator>
                             
                     </div>
                 </div>
