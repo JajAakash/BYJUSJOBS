@@ -123,3 +123,10 @@ color: green
 .viewcard{
     margin-top: 20px;
 }
+.navpost-btn{
+    font-weight: 600;
+    background-color: rgba(205, 63, 218, 0.98);
+    color:#fff;
+    text-align: center;
+    font-family: inherit;
+}
