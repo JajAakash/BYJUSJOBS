@@ -12,9 +12,7 @@ export class PostjobService {
 
   constructor(private informationService:InformationService,private restService:RestService,private _http:Http) { }
 
-  postJobs(data:Jobdata):Observable<Jobdata[]>{
-    console.log("555555555555555")
-    console.log(data,this.informationService.postJobUrl)
+  postJobs(data:Jobdata):Observable<boolean>{
     return this._http.post(this.informationService.postJobUrl,data)
     .pipe(map((response: Response) => response.json()));
 

@@ -1,0 +1,26 @@
+.navbar-default {
+    background-color: rgba(129,53,136,.98);
+    border-color:black;
+  
+}
+ .alert-success{
+     background-color: rgba(129,53,136,.98);
+     color: #ffff;
+     
+ }
+ .alt-ht{
+     height: 300%;
+ }
+ .alert button{
+    border-color: #fff;
+    background-color: rgba(129,53,136,.98);
+    color: #fff
+ }
+ hr{
+    border-top: 1px solid #fff
+ }
+ 
+ .noData {
+    margin: 0 auto;
+    margin-top: 50px;
+}

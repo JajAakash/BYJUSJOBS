@@ -1,3 +1,5 @@
+var capitalizecase= require('../converter/converter')
+
 const express =require ('express');
 const router =express.Router();
 const mongoose=require('mongoose')
@@ -13,7 +15,6 @@ mongoose.connect(url,function(err){
 });
 
 router.get('/jobs',function(req,res){
-    console.log('finding all jobsss for u');
     Jobs.find({}).exec(function(err,jobs){
         if(err){
             console.log("Error fetching while jobs")
@@ -25,7 +26,6 @@ router.get('/jobs',function(req,res){
 
 
 router.get('/jobs/:id',function(req,res){
-    console.log('finding all jobs for u');
     Jobs.findById(req.params.id).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your jobs")
@@ -37,18 +37,7 @@ router.get('/jobs/:id',function(req,res){
 
 
 router.get('/jobsin/:location',function(req,res){
-    Jobs.find({location:req.params.location}).exec(function(err,jobs){
-        if(err){
-            console.log("error while fetching your job Details")
-        }else{
-            res.json(jobs)
-        }
-    })
-});
-
-router.get('/jobsin/:location',function(req,res){
-    console.log('finding all jobs for5 u');
-    Jobs.find({location:req.params.location}).exec(function(err,jobs){
+    Jobs.find({location:capitalizecase(req.params.location.trim())}).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
         }else{
@@ -59,37 +48,57 @@ router.get('/jobsin/:location',function(req,res){
 
 
 router.get('/jobs-for/:skills',function(req,res){
-    console.log('finding all jobs 4 u');
-    Jobs.find({skills:req.params.skills}).exec(function(err,jobs){
+    Jobs.find({skills:capitalizecase(req.params.skills.trim())}).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
         }else{
-            //console.log(jobs.companyname)
-            res.json(jobs)
+            res.json(jobs);
         }
     })
 });
 
 //double Parameter
 router.get('/jobs/:skills/:location',function(req,res){
-    console.log('finding all jobs for78 u');
-    Jobs.find({ $and: [ { location: req.params.location}, { skills: req.params.skills  } ] }).exec(function(err,jobs){
+    Jobs.find({ $and: [ { location:capitalizecase(req.params.location.trim())}, { skills: capitalizecase(req.params.skills.trim())} ] }).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
         }else{
-            res.json(jobs)
+            res.json(jobs);
         }
     })
 });
 
+//location Experience
+router.get('/exp/loc/:experience/:location',function(req,res){
+    var exp=parseInt(req.params.experience)
+    Jobs.find({ $and: [ { location:capitalizecase(req.params.location.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]}] }).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details")
+        }else{
+            res.json(jobs);
+        }
+    })
+});
+
+
+//user input skill + experience
+router.get('/skill/exp/:experience/:skills',function(req,res){
+    var exp=parseInt(req.params.experience)
+    
+    Jobs.find({ $and: [{ skills: capitalizecase(req.params.skills.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]} ] }).exec(function(err,jobs){
+        if(err){
+            console.log("error while fetching your job Details")
+        }else{
+            res.json(jobs);
+        }
+    })
+});
+
+
 //all params
 router.get('/jobs/:skills/:location/:experience',function(req,res){
     var exp=parseInt(req.params.experience)
-    // if(req.params.location=="Bengaluru/Bangalore"){
-    //     req.params.location="Bangalore"
-    // }
-    console.log('finding all jobs for78 u');
-    Jobs.find({ $and: [ { location: req.params.location}, { skills: req.params.skills},{$or: [{experience:{$lt:exp}},{ experience: exp }]}]}).exec(function(err,jobs){
+    Jobs.find({ $and: [ { location: capitalizecase(req.params.location.trim())}, { skills: capitalizecase(req.params.skills.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]}]}).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
         }else{
@@ -101,7 +110,6 @@ router.get('/jobs/:skills/:location/:experience',function(req,res){
 
 router.get('/jobs-experience/:experience',function(req,res){
     var exp=parseInt(req.params.experience)
-    console.log('finding all jobs 3 u',req.params.experience);
     
     Jobs.find({ $and: [ { maxExp: { $gte:exp  } }, { minExp: { $lte:exp  } }] }).exec(function(err,jobs){
         if(err){
@@ -115,17 +123,28 @@ router.get('/jobs-experience/:experience',function(req,res){
 router.post('/job/listed',function(req,res){
     
     var postJob = new Jobs();
-    postJob.title=req.body.title;
+    postJob.title=capitalizecase(req.body.title);
     postJob.applylink=req.body.applylink;
     postJob.jd=req.body.jd;
-    postJob.companyname=req.body.companyname;
-    postJob.location=req.body.location;
+    postJob.companyname=capitalizecase(req.body.companyname);
     postJob.experience=req.body.experience;
     postJob.type=req.body.type;
-    postJob.skills=req.body.skills;
+    for(skill of req.body.skills){
+        postJob.skills.push(capitalizecase(skill))
+    }
     postJob.startdate=req.body.startdate;
     postJob.enddate=req.body.enddate;
     postJob.created=Date.now();
+
+    
+    if(capitalizecase(req.body.location)=="Bangalore"){
+        postJob.location="Bengaluru"
+    }
+    else{
+        postJob.location=capitalizecase(req.body.location)
+    }
+
+
     if(req.body.salary===""){
         postJob.salary="Not specified"
     }
@@ -147,7 +166,6 @@ router.post('/job/listed',function(req,res){
     
     
     postJob.save(function(err,postedJob){
-        console.log("source salary",postJob.salary,postJob.source);
         if(err){
             console.log(err,"Error saving Jobs")
         }
@@ -160,3 +178,4 @@ router.post('/job/listed',function(req,res){
 
 
 module.exports = router;
+

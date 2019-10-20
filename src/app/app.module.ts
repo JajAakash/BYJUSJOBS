@@ -11,13 +11,15 @@ import { JobsearchComponent } from './jobsearch/jobsearch.component';
 import { JobsViewComponent } from './jobs-view/jobs-view.component';
 import { JobApplyComponent } from './job-apply/job-apply.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import{MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import{MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule, MatProgressBarModule} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule,MatIconModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RespostComponent } from './respost/respost.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 const material=[MatDatepickerModule,MatFormFieldModule,
-  MatInputModule,
+  MatInputModule,MatProgressSpinnerModule,MatProgressBarModule,
   MatNativeDateModule];
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ const material=[MatDatepickerModule,MatFormFieldModule,
     JobpostComponent,
     JobsearchComponent,
     JobsViewComponent,
-    JobApplyComponent
+    JobApplyComponent,
+    RespostComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ const material=[MatDatepickerModule,MatFormFieldModule,
     MatPaginatorModule,
     MatIconModule,
     material,
+    NgxPaginationModule,
     BrowserAnimationsModule
     
   ],

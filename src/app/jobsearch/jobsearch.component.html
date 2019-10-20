@@ -49,12 +49,14 @@
                 </form>
             </div>
         </div>
-
-        <div class="card" style="margin-top: 1.5rem">
-                <div class="card-body">
+        
+        <mat-spinner class="spin spinner" *ngIf="showSpinner"></mat-spinner>
+        
+        <div class="card" style="margin-top: 1.5rem" *ngIf="!showSpinner">
+                <div class="card-body" >
                     <div class="row">
                         
-                            <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob">
+                            <div class="col-sm-12 col-lg-6 viewcard" *ngFor="let item of filterjob | paginate: { itemsPerPage: count, currentPage: p }">
                                 
                                 <div class="card h-100" >
                                     <div class="card-body">
@@ -81,6 +83,13 @@
                             </div>
                             
                     </div>
+                    <!--Including the pagination control.-->
+                    <footer class="foot">
+                        <div class="text-right">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </footer>
+                    
                 </div>
         </div>
     </div>

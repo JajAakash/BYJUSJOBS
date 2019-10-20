@@ -11,8 +11,7 @@ export class JobApplyService {
 
   constructor(private _http:Http,private infoService:InformationService) { }
 
-  jobApplyService():Observable<any[]>{
-    //console.log(this.inforService.postJobUrl)
+  jobApplyService():Observable<any>{
     return this._http.get(this.infoService.jobbyidurl+this.infoService.jobid)
     .pipe(map((response: Response) => response.json()));
   }

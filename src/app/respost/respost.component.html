@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
+    <div class="container-fluid" >
+      <div class="navbar-header" >
+        <a href="jobs" class="pull-left"><img src="assets/logobyjus.png"></a> 
+      </div>
+    </div>    
+  </nav>
+
+<div class="container col-sm-10" style="margin-top: 20px;" *ngIf="searchjob==true">
+    <div class="alert alert-success alt-ht" role="alert" style="height: 170px;">
+        <h3 class="alert-heading"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Successfully submitted</h3>
+        <p>Aww yeah, you have successfully submitted the job details & posted your job.</p>
+        <hr>
+        <button type="button" class="btn pull-right" type="submit" (click)="view()">View jobs</button>
+    </div>
+      
+</div>
+
+<div class="row" style="background-color: blanchedalmond" *ngIf="searchjob==false">
+  <img src="./assets/not-found.png" class="noData img-fluid" alt="Responsive image">
+</div>

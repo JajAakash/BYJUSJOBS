@@ -6,6 +6,7 @@ import { InformationService } from '../information.service';
 import { Router } from '@angular/router';
 import {MatPaginator,MatTableDataSource} from '@angular/material';
 import {PageEvent} from "@angular/material/paginator"
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-jobsearch',
@@ -15,19 +16,23 @@ import {PageEvent} from "@angular/material/paginator"
 export class JobsearchComponent implements OnInit {
   
   current=new Date();
-  joblist:JobData;
   filterjob:any;
   jobsearchForm:FormGroup;
   currentDate: Date = new Date();
-  days:any=1000*60*60*24;
+  //nouse days:any=1000*60*60*24;
   
-  //@ViewChild(MatPaginator,{static: true}) paginator:MatPaginator;
-  pageEvent:PageEvent
+  showSpinner=false;
+  p: number = 1;
+  count: number = 6;
 
   constructor(private router:Router,private jobService:JobsearchService,private formbuilder: FormBuilder,private infoservice:InformationService){}
    
   getJob(){
-    this.infoservice.location= this.jobsearchForm.value.location;
+    let location:string="Bangalore";
+    if(this.jobsearchForm.value.location=="Bangalore" || this.jobsearchForm.value.location=="bangalore" || this.jobsearchForm.value.location=="BANGALORE"){
+      this.infoservice.location="Bengaluru"
+    }
+    else{this.infoservice.location= this.jobsearchForm.value.location;}
     this.infoservice.skills= this.jobsearchForm.value.skills;
     this.infoservice.experience=this.jobsearchForm.value.experience;
     this.router.navigate(['/jobs-view']);
@@ -39,6 +44,10 @@ export class JobsearchComponent implements OnInit {
 
   }
   async jobsearch(){
+    this.showSpinner=true;
+    setTimeout(()=>{
+      this.showSpinner=false;},3000);
+    
     this.filterjob = await this.jobService.getJobs().toPromise();
     this.infoservice.jobs(this.filterjob);
     

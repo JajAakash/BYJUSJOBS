@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from '../information.service';
-import { JobViewData } from './jobViewData';
 import { JobsearchService } from '../jobsearch/jobsearch.service';
 import { Router } from '@angular/router';
+import { Session } from 'protractor';
 
 @Component({
   selector: 'app-jobs-view',
@@ -17,18 +17,45 @@ export class JobsViewComponent implements OnInit {
   async jobs(){
     if(this.infoService.skills!=undefined && this.infoService.location==undefined && this.infoService.experience==null){
       this.jobList= await this.jobService.getJobsbySkills().toPromise();
-      this.infoService.jobs(this.jobList);
     }
 
-    if(this.infoService.skills==null && this.infoService.location!=undefined && this.infoService.experience==undefined){
+    else if(this.infoService.skills==null && this.infoService.location!=undefined && this.infoService.experience==undefined){
     this.jobList= await this.jobService.getJobsbyLocation().toPromise();
-    this.infoService.jobs(this.jobList);
     }
 
-    if(this.infoService.skills==undefined && this.infoService.location==undefined && this.infoService.experience!=undefined){
+    else if(this.infoService.skills==undefined && this.infoService.location==undefined && this.infoService.experience!=undefined){
       this.jobList= await this.jobService.getJobsbyExperience().toPromise();
-      this.infoService.jobs(this.jobList);
     }
+
+    else if(this.infoService.skills!=undefined && this.infoService.location!=undefined && this.infoService.experience==undefined){
+      this.jobList= await this.jobService.getJobsbylocskill().toPromise();
+    }
+
+    else if(this.infoService.skills!=undefined && this.infoService.location==undefined && this.infoService.experience!=undefined){
+      this.jobList= await this.jobService.getJobsbyexpskill().toPromise();
+    }
+
+    else if(this.infoService.skills==undefined && this.infoService.location!=undefined && this.infoService.experience!=undefined){
+      this.jobList= await this.jobService.getJobsexploc().toPromise();
+    }
+
+
+    else if(this.infoService.skills!=undefined && this.infoService.location!=undefined && this.infoService.experience!=undefined){
+      this.jobList= await this.jobService.getJobsbyall().toPromise();
+    }
+    if(this.jobList!=undefined && this.jobList.length==0){
+      this.infoService.switch=false;
+      this.router.navigate(['/applied']);
+      
+    }
+
+    if(this.jobList==undefined){
+      this.jobList=JSON.parse(sessionStorage.getItem('jobList'));
+      
+    }
+    sessionStorage.setItem('jobList',JSON.stringify(this.jobList))
+    this.infoService.jobs(this.jobList);
+    
 
   }
   applyJob(jobid:string){
@@ -40,5 +67,6 @@ export class JobsViewComponent implements OnInit {
   
   ngOnInit() {
     this.jobs();
+    
   }
 } 

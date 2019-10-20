@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Jobdata } from './jobdata';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { Router} from '@angular/router';
@@ -14,24 +13,21 @@ import { PostjobService } from './postjob.service';
 })
 export class JobpostComponent implements OnInit {
   public Editor = ClassicEditor;
-  jobData:Jobdata[]
+  jobData:any;
   errorMsg:string;
   jobdataForm:FormGroup;
   jd:string;
 
-  public config = {
-    placeholder: 'Type the content here!'
-}
+
 
   public onChange( { editor }: ChangeEvent ) {
     this.jd = editor.getData();
 
-    console.log( this.jd );
 }
 
   constructor(private formbuilder: FormBuilder,private router:Router,private information:InformationService,private postJobService:PostjobService) { }
 
-  postJobs(){
+  async postJobs(){
     var skill=this.jobdataForm.value.skills.split(",");
 
     var exp = this.jobdataForm.value.experience.split("-").map(function(item) {
@@ -41,14 +37,13 @@ export class JobpostComponent implements OnInit {
     this.jobdataForm.value.experience=exp;
     this.jobdataForm.value.jd=this.jd;
 
-    this.postJobService.postJobs(this.jobdataForm.value).subscribe(respdata=>this.jobData=respdata)
-    
+    this.jobData=await this.postJobService.postJobs(this.jobdataForm.value).toPromise();
+    if(this.jobData != null){
+      this.information.switch=true;
+      this.router.navigate(['/applied']);
+    }
   }
 
-  
-//   var str = "Apples are round, and apples are juicy."; 
-// var splitted = str.split(" ", 3); 
-// console.log(splitted)
 
   ngOnInit() {
     this.jobdataForm=this.formbuilder.group({
