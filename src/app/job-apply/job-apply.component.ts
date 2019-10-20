@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from '../information.service';
 import { JobApplyService } from './job-apply.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { JobsearchService } from '../jobsearch/jobsearch.service';
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
@@ -13,13 +10,17 @@ export class JobApplyComponent implements OnInit {
   jobDetails:any;
   experience:string;
   currentDate: Date = new Date();
-  isDataAvail:boolean;
   
-  constructor(private infoservice:InformationService,private applyService:JobsearchService) { }
+  constructor(private infoservice:InformationService,private applyService:JobApplyService) { }
 
   async jobs(){
-        this.jobDetails= await this.applyService.jobApplyService().toPromise();
-    //document.getElementById("jdesc").innerHTML = this.jobDetails.jd;
+    if(this.infoservice.jobid!=undefined){
+      this.jobDetails= await this.applyService.jobApplyService().toPromise();
+    }
+    else{
+      this.jobDetails=JSON.parse(sessionStorage.getItem('jobDetails'));
+    }
+    document.getElementById("jdesc").innerHTML = this.jobDetails.jd;
 
         let secondDate=new Date(this.currentDate);
         let firstDate = new Date(this.jobDetails.created);
@@ -29,14 +30,7 @@ export class JobApplyComponent implements OnInit {
         this.jobDetails.noOfDays=diffInDays;
         this.jobDetails.noOfWeeks=noOfWeeks;
         this.jobDetails.noOfMonths=noOfMonths;
-        this.jobDetails.avail=true;
-        console.log(this.jobDetails.noOfDays,this.jobDetails.noOfMonths,this.jobDetails.noOfWeeks)
-
-    
-    this.isDataAvail=true;
-    console.log(this.jobDetails);
-
-    
+        sessionStorage.setItem('jobDetails',JSON.stringify(this.jobDetails))
   }
   
   ngOnInit() {

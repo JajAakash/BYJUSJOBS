@@ -17,12 +17,12 @@
                 <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{jobDetails.location}}</p>
                 <p class="pos" *ngIf="jobDetails.noOfDays==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} day ago</p>
                 <p class="pos" *ngIf="jobDetails.noOfWeeks==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails?.noOfWeeks}} week ago</p>
-                <p class="pos" *ngIf="jobDetails.noOfDays>1 && jobDetails<7"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} days ago</p>
+                <p class="pos" *ngIf="jobDetails.noOfDays>1 && jobDetails.noOfDays<7"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfDays}} days ago</p>
                 <p class="pos" *ngIf="jobDetails.noOfWeeks>1 && jobDetails.noOfDays<30"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails?.noOfWeeks}} weeks ago</p>
                 <p class="pos" *ngIf="jobDetails.noOfMonths==1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfMonths}} Month ago</p>
                 <p class="pos" *ngIf="jobDetails.noOfMonths>1"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted:&nbsp;{{jobDetails.noOfMonths}} Months ago</p>
                 <hr>
-                
+
                 <h6 class="jd-t"><u>Job Description</u></h6><p class="des" id="jdesc"></p>
                 <!-- <ckeditor data="{{jobDetails.jd}}" [editor]="Editor" disabled="false"></ckeditor> -->
                 <h6 class="jd-t"><u>Experience Required</u>&nbsp;&nbsp;{{jobDetails.experience[0]+" - "+jobDetails.experience[1]}}&nbsp;Years</h6><br>

@@ -32,32 +32,24 @@ export class JobsearchService {
   }
 
   getJobsbylocskill():Observable<any>{
-    console.log("in double params",this.inforService.jobbylocskill)
     return this._http.get(this.inforService.jobbylocskill+this.inforService.skills+'/'+this.inforService.location)
     .pipe(map((response: Response) => response.json()));
   }
 
   getJobsbyexpskill():Observable<any>{
-    console.log("in double params",this.inforService.jobbyexpskill+this.inforService.experience+'/'+this.inforService.skills)
     return this._http.get(this.inforService.jobbyexpskill+this.inforService.experience+'/'+this.inforService.skills)
     .pipe(map((response: Response) => response.json()));
   }
 
   getJobsexploc():Observable<any>{
-    console.log("in double paramsssss",this.inforService.jobsbyexploc+this.inforService.experience+'/'+this.inforService.location)
     return this._http.get(this.inforService.jobsbyexploc+this.inforService.experience+'/'+this.inforService.location)
     .pipe(map((response: Response) => response.json()));
   }
 
 
   getJobsbyall():Observable<any>{
-    console.log("in double params",this.inforService.jobsbyall+this.inforService.skills+'/'+this.inforService.location+'/'+this.inforService.experience)
     return this._http.get(this.inforService.jobsbyall+this.inforService.skills+'/'+this.inforService.location+'/'+this.inforService.experience)
     .pipe(map((response: Response) => response.json()));
   }
 
-  jobApplyService():Observable<any>{
-    return this._http.get(this.inforService.jobbyidurl+this.inforService.jobid)
-    .pipe(map((response: Response) => response.json()));
-  }
 }

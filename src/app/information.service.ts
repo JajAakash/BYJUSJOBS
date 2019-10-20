@@ -11,9 +11,6 @@ export class InformationService {
   jobid:string
   switch:boolean;
   jobviewlist:JobViewData[];
-  // noOfDays:number;
-  // noOfWeeks:number;
-  // noOfMonths:number;
   currentDate: Date = new Date();
   days:any=1000*60*60*24;
   constructor(){} 
@@ -31,23 +28,7 @@ export class InformationService {
       i.jobValid=(new Date(i.enddate)>new Date(this.currentDate));
   }
 }
-// applyJobs(jobDetails:any){
-//   for( let i of jobDetails){
-//     if(i=="created"){
-//       let secondDate=new Date(this.currentDate);
-//       let firstDate = new Date(jobDetails[i]);
-//       let diffInDays=Math.round(Math.abs((secondDate.getTime() - firstDate.getTime())/(this.days)));
-//       let noOfWeeks=Math.floor(diffInDays/7);
-//       let noOfMonths=Math.floor(diffInDays/30);
-//       jobDetails['noOfDays']=diffInDays;
-//     jobDetails['noOfWeeks']=noOfWeeks;
-//       jobDetails['noOfMonths']=noOfMonths;
-    
-//     }
-    
-//   }
-// }
-  postJobUrl='http://localhost:5000/byjusjobs/job/listed';
+ postJobUrl='http://localhost:5000/byjusjobs/job/listed';
   jobSearch='http://localhost:5000/byjusjobs/jobs';
   jobbylocationurl='http://localhost:5000/byjusjobs/jobsin/';
   jobbyskillsurl='http://localhost:5000/byjusjobs/jobs-for/';
