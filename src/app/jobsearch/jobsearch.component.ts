@@ -19,7 +19,6 @@ export class JobsearchComponent implements OnInit {
   filterjob:any;
   jobsearchForm:FormGroup;
   currentDate: Date = new Date();
-  //nouse days:any=1000*60*60*24;
   
   showSpinner=false;
   p: number = 1;

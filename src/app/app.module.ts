@@ -18,6 +18,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RespostComponent } from './respost/respost.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SigninAuthComponent } from './signin-auth/signin-auth.component';
+import { SignupAuthComponent } from './signup-auth/signup-auth.component';
 const material=[MatDatepickerModule,MatFormFieldModule,
   MatInputModule,MatProgressSpinnerModule,MatProgressBarModule,
   MatNativeDateModule];
@@ -28,7 +30,9 @@ const material=[MatDatepickerModule,MatFormFieldModule,
     JobsearchComponent,
     JobsViewComponent,
     JobApplyComponent,
-    RespostComponent
+    RespostComponent,
+    SigninAuthComponent,
+    SignupAuthComponent
   ],
   imports: [
     BrowserModule,

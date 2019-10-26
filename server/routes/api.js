@@ -4,8 +4,10 @@ const express =require ('express');
 const router =express.Router();
 const mongoose=require('mongoose')
 const Jobs=require('../models/jobs');
+const passport=require('../config/passport')
+const key=require('../config/key')
 
-const url="mongodb://admin:admin123@ds257551.mlab.com:57551/byjusjobs"
+const url=key.mongodb.dbURI;
 mongoose.Promise=global.Promise;
 
 mongoose.connect(url,function(err){
@@ -13,6 +15,9 @@ mongoose.connect(url,function(err){
         console.log("Error !!!"+err);
     }
 });
+
+
+
 
 router.get('/jobs',function(req,res){
     Jobs.find({}).exec(function(err,jobs){

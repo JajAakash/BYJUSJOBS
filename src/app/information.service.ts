@@ -38,6 +38,7 @@ export class InformationService {
   jobbyexpskill='http://localhost:5000/byjusjobs/skill/exp/';
   jobsbyexploc='http://localhost:5000/byjusjobs/exp/loc/';
   jobsbyall='http://localhost:5000/byjusjobs/jobs/';
+  googleLogin='http://localhost:5000/auth/google'
   
 
 }

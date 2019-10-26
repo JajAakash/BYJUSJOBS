@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
+  <div class="container-fluid" >
+    <div class="navbar-header" >
+        <a href="jobs" class="pull-left"><img src="assets/logobyjus.png"></a> 
+    </div>
+  </div>
+</nav>
+
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Login to ChakriPao</h5>
+              <form [formGroup]="signinForm" class="form-signin">
+
+                <div class="col form-group">
+                    <div class="active-purple-3 active-purple-4 mb-4">
+                        <i class="fa fa-user fa-lg icon" aria-hidden="true"></i>
+                        <input class="form-control" type="email" placeholder="Email address" formControlName="email" aria-label="Search" style="padding-left: 40px;">
+                    </div>                            
+                </div>
+
+                <div class="col form-group">
+                  <div class="active-purple-3 active-purple-4 mb-4">
+                      <i class="fa fa-lock fa-lg icon" aria-hidden="true"></i>
+                      <input class="form-control" type="password" placeholder="Password" formControlName="password" aria-label="Search" style="padding-left: 40px;">
+                  </div>                            
+                </div>
+  
+                <div class="custom-control custom-checkbox mb-3 rem-pwd">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember password</label>
+                </div>
+
+                <button class="btn btn-lg btn-loc btn-block text-uppercase" type="submit">Sign in</button>
+                <hr class="my-4">
+                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="googleLogin()"><i class="fa fa-google mr-2"></i> Sign in with Google</button>
+                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fa fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+                <div class="rdrct-reg">
+                  <p class="pull-left"><a href="">Forgot password</a></p>
+                  <p class="pull-right">New to ChakriPao?&nbsp; <a href="/sign-up" (click)="createAccount()">Create Account</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
