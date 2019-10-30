@@ -13,17 +13,54 @@ app.use(function(req, res, next) {
 
   
 
-router.get('/google',passport.authenticate('google',{
+// router.get('/google',passport.authenticate('google',{
     
-    scope:[
-        'https://www.googleapis.com/auth/plus.login'
-        //'profile'
-    ]
+//     scope:[
+        
+//         'https://www.googleapis.com/auth/plus.login',
+//         'https://www.googleapis.com/auth/userinfo.email'
+//         //'profile'
+//     ]
+// }));
+
+// router.get('/google/callback',passport.authenticate('google'),(req,res)=>{
+//     res.send((req.user));
+// });
+
+
+function setRedirectAfterLoginPath(req, res, next) {
+    req.session.returnTo = 'http://localhost:4200/';
+    next();
+    console.log("req session printing"+req.session.returnTo)
+}
+
+
+router.get('/google',
+    setRedirectAfterLoginPath,
+    passport.authenticate('google',{
+        scope: [
+            'https://www.googleapis.com/auth/plus.login',
+            //'https://www.googleapis.com/auth/userinfo.email'
+        ]
+        
 }));
 
-router.get('/google/callback',passport.authenticate('google'),(req,res)=>{
-    res.send(req.user);
-});
+function redirectAfterLogin(req, res) {
+    var redirectPath = req.session.returnTo;
+    delete req.session.returnTo;
+    res.redirect(redirectPath);
+}
 
+router.get('/google/callback',
+    passport.authenticate('google', {
+        // successRedirect: 'back',
+        failureRedirect: 'back'
+    }), redirectAfterLogin);
+
+router.get("/logout", function(req, res , next) {
+    var refURL = 'http://localhost:4200/postJobs';
+    req.logout();
+    res.redirect(refURL);
+});
 
 module.exports=router

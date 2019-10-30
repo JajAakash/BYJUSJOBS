@@ -40,5 +40,4 @@ export class InformationService {
   jobsbyall='http://localhost:5000/byjusjobs/jobs/';
   googleLogin='http://localhost:5000/auth/google'
   
-
 }

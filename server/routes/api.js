@@ -182,5 +182,20 @@ router.post('/job/listed',function(req,res){
 });
 
 
+
+router.get('/google',passport.authenticate('google',{
+    
+    scope:[
+        
+        'https://www.googleapis.com/auth/plus.login',
+        'https://www.googleapis.com/auth/userinfo.email'
+        //'profile'
+    ]
+}));
+
+router.get('/google/callback',passport.authenticate('google'),(req,res)=>{
+    res.send(req.user);
+});
+
 module.exports = router;
 

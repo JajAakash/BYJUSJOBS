@@ -13,9 +13,11 @@ export class SigninAuthService {
   constructor(private _http:Http,private inforService:InformationService) { }
 
   googleLogin():Observable<any>{
-    console.log("cross origin")
+    //console.log("cross origin",this.inforService.googleLogin)
+    //console.warn(xhr.responseText);
     return this._http.get((this.inforService.googleLogin))
     .pipe(map((response: Response) => response.json()));
+    //console.log("cross origin",this.inforService.googleLogin)
   }
 
 

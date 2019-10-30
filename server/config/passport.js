@@ -3,27 +3,23 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const key=require('./key')
 const User=require('../models/user')
 const express =require ('express');
-const app=express();
-app.use(function(req, res, next) {
-    console.log("origin allowing")
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
 
 
 passport.serializeUser((user, done)=> {
-  // console.log(user,user.id);
+  console.log("serial----------------",user,user.id);
   done(null, user.id);
 });
 
 
 passport.deserializeUser((id, done)=> {
-  // console.log(user,user.id);
+  console.log("user====",id);
   User.findById(id).then((user)=>{
     done(null, user.id);
   })
+},function(error){
+  done(error);
 });
+
 
 passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback',
@@ -32,6 +28,7 @@ passport.use(new GoogleStrategy({
     
   },(accessToken,refreshToken,profile,done)=>{
     User.findOne({googleid:profile.id}).then((currentUser)=>{
+      console.log(currentUser+"user already exists")
       if(currentUser){
         console.log(currentUser+"user already exists")
         done(null,currentUser)
@@ -49,5 +46,6 @@ passport.use(new GoogleStrategy({
     });
   }
 ));
+
 
 module.exports=passport;
