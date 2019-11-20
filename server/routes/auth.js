@@ -1,16 +1,8 @@
-
 var passport = require('passport');
+var User=require('../models/user')
 const express =require ('express');
 const router =express.Router();
-
-const app=express();
-app.use(function(req, res, next) {
-    console.log("origin allowing")
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-
+const jwt=require('jsonwebtoken')
   
 
 // router.get('/google',passport.authenticate('google',{
@@ -24,43 +16,44 @@ app.use(function(req, res, next) {
 // }));
 
 // router.get('/google/callback',passport.authenticate('google'),(req,res)=>{
-//     res.send((req.user));
+//     res.redirect(('/profile'));
 // });
 
 
-function setRedirectAfterLoginPath(req, res, next) {
-    req.session.returnTo = 'http://localhost:4200/';
-    next();
-    console.log("req session printing"+req.session.returnTo)
-}
+// router.get("/logout", function(req, res , next) {
+//     var refURL = 'http://localhost:4200/sign-in';
+//     req.logout();
+//     res.redirect(refURL);
+// });
 
-
-router.get('/google',
-    setRedirectAfterLoginPath,
-    passport.authenticate('google',{
-        scope: [
-            'https://www.googleapis.com/auth/plus.login',
-            //'https://www.googleapis.com/auth/userinfo.email'
-        ]
-        
-}));
-
-function redirectAfterLogin(req, res) {
-    var redirectPath = req.session.returnTo;
-    delete req.session.returnTo;
-    res.redirect(redirectPath);
-}
-
-router.get('/google/callback',
-    passport.authenticate('google', {
-        // successRedirect: 'back',
-        failureRedirect: 'back'
-    }), redirectAfterLogin);
-
-router.get("/logout", function(req, res , next) {
-    var refURL = 'http://localhost:4200/postJobs';
-    req.logout();
-    res.redirect(refURL);
-});
+router.post('/login',function(req,res){
+    User.findOne({googleid:req.body.id}).then((currentUser)=>{
+        if(currentUser){
+            let payload={subject: req.body.id}
+            let token=jwt.sign(payload, 'secretkey')
+          res.json(token)
+        }
+        else{
+          var user = new User();
+          user.googleid=req.body.id;
+          user.userName=req.body.name;
+          user.email=req.body.email;
+          user.photoUrl=req.body.photoUrl;
+          user.firstName=req.body.firstName;
+          user.lastName=req.body.lastName;
+        user.save(function(err,newUser){
+            if(err){
+                console.log(err,"Error saving Jobs")
+            }
+            else{
+                //jwt;
+                let payload={subject: req.body.id}
+                let token=jwt.sign(payload, 'secretkey')
+                res.json(token)
+            }
+        });
+        }
+      }
+)})
 
 module.exports=router

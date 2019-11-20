@@ -3,6 +3,8 @@ import { InformationService } from '../information.service';
 import { JobsearchService } from '../jobsearch/jobsearch.service';
 import { Router } from '@angular/router';
 import { Session } from 'protractor';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { SigninAuthService } from '../signin-auth/signin-auth.service';
 
 @Component({
   selector: 'app-jobs-view',
@@ -10,11 +12,15 @@ import { Session } from 'protractor';
   styleUrls: ['./jobs-view.component.css']
 })
 export class JobsViewComponent implements OnInit {
-
+  showSpinner=true;
   jobList:any[];
-  constructor(private infoService:InformationService,private jobService:JobsearchService,private router:Router) { }
+  userlogin:any;
+  constructor(private spinnerService: Ng4LoadingSpinnerService,private signinService:SigninAuthService, private infoService:InformationService,private jobService:JobsearchService,private router:Router) { }
   
   async jobs(){
+    this.spinnerService.show();
+    setTimeout(()=>this.showSpinner=false,3000)
+    
     if(this.infoService.skills!=undefined && this.infoService.location==undefined && this.infoService.experience==null){
       this.jobList= await this.jobService.getJobsbySkills().toPromise();
     }
@@ -24,6 +30,7 @@ export class JobsViewComponent implements OnInit {
     }
 
     else if(this.infoService.skills==undefined && this.infoService.location==undefined && this.infoService.experience!=undefined){
+      console.log("qwerty12345678")
       this.jobList= await this.jobService.getJobsbyExperience().toPromise();
     }
 
@@ -33,6 +40,8 @@ export class JobsViewComponent implements OnInit {
 
     else if(this.infoService.skills!=undefined && this.infoService.location==undefined && this.infoService.experience!=undefined){
       this.jobList= await this.jobService.getJobsbyexpskill().toPromise();
+    
+      
     }
 
     else if(this.infoService.skills==undefined && this.infoService.location!=undefined && this.infoService.experience!=undefined){
@@ -59,14 +68,26 @@ export class JobsViewComponent implements OnInit {
 
   }
   applyJob(jobid:string){
+
+    //this.showSpinner=true;
+    // setTimeout(()=>{
+    //   this.showSpinner=false;},6000);
+    
+
     this.infoService.jobid=jobid;
     this.router.navigate(['/apply']);
 
   }
 
+
+  // async loggedin(){
+  //   this.userlogin=await this.signinService.googleLogin().toPromise();
+  //   console.log("here in ghanta",this.userlogin)
+  //   return console.log(this.userlogin)
+  // }
+
   
   ngOnInit() {
-    this.jobs();
-    
+      this.jobs(); 
   }
 } 

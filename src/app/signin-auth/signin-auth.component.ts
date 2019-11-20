@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { SigninAuthService } from './signin-auth.service';
 import { Http } from '@angular/http';
+import { User } from './user';
+import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-signin-auth',
@@ -12,16 +14,32 @@ import { Http } from '@angular/http';
 })
 export class SigninAuthComponent implements OnInit {
   signinForm:FormGroup;
-  user:any;
+  //user:any;
   signup:boolean=false;
-  constructor(private _http:Http,private router:Router,private formbuilder: FormBuilder, private signinService:SigninAuthService) { }
+  response;  
+  user=new User();
+  constructor(public OAuth: AuthService,private _http:Http,private router:Router,private formbuilder: FormBuilder, private loginService:SigninAuthService) { }
 
-  async googleLogin(){
-    await this.signinService.googleLogin().toPromise();
-    console.log("here in ghanta")
-    //this._http.get('http://localhost:5000/auth/google')
-  
-  }
+public socialLogIn(socialProvider: string) {  
+  let socialPlatformProvider;  
+  if (socialProvider === 'google') {  
+    socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;  }
+  // } else if (socialProvider === 'google') {  
+  //   socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;  
+  // }  
+  this.OAuth.signIn(socialPlatformProvider).then(user => {    
+    this.Loginresponse(user);
+  });  
+}  
+Loginresponse(user) {  
+  this.loginService.loginresponse(user).subscribe(
+    (res: any) => {    
+    //this.response = res; 
+    localStorage.setItem('token', res);  
+    this.router.navigate(['/jobs']);  
+  })  
+}  
+
 
   ngOnInit() {
     this.signinForm=this.formbuilder.group({

@@ -16,8 +16,6 @@ passport.deserializeUser((id, done)=> {
   User.findById(id).then((user)=>{
     done(null, user.id);
   })
-},function(error){
-  done(error);
 });
 
 

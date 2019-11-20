@@ -13,7 +13,7 @@ export class SignupAuthComponent implements OnInit {
   constructor(private router:Router,private formbuilder: FormBuilder, private signinService:SigninAuthService) { }
 
   async googleSignUp(){
-    this.user = await this.signinService.googleLogin().toPromise();
+    //this.user = await this.signinService.googleLogin().toPromise();
   }
 
 

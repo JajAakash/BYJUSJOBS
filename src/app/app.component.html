@@ -1,1 +1,86 @@
+<nav class="navbar navbar-expand-sm navbar-default">
+    <a href="/jobs"><img src="assets/logo.jpg"></a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#idnav">
+        <span class="navbar-toggler-icon btn-sample"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="idnav">
+
+        <ul class="navbar-nav ml-auto nav-icon">
+
+            <li class="nav-item">
+                <a href="/jobs" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a>
+            </li>
+
+            <li class="nav-item" *ngIf= "signinServ.loggedIn()">
+                <a href="#" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;My profile</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;About us</a>
+            </li>
+
+            <li class="nav-item" *ngIf= "! signinServ.loggedIn()" >
+                <a href="/sign-in" class="nav-link"><i class="fa fa-sign-in"></i>&nbsp;Login</a>
+            </li>
+
+            <li class="nav-item" *ngIf= "signinServ.loggedIn()">
+                <a href="" class="nav-link" (click)="signinServ.logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/postJobs" class="pull-right"><button type="button" class="btn navpost-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Post your job</button> </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <router-outlet></router-outlet>
+<!-- <section id="footer">
+		<div class="container-fluid">
+			<div class="row text-center text-xs-center text-sm-left text-md-left" style="margin-left: 0.8rem">
+				<div class="col-xs-12 col-sm-3 col-md-3">
+					<h5>Search Your Job</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+						<li><a href=""><i class="fa fa-angle-double-right"></i>Find Jobs</a></li>
+						<li><a href=""><i class="fa fa-angle-double-right"></i>Post Jobs</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<h5>Stay Connected</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href=""><i class="fa fa-angle-double-right"></i>Contact us</a></li>
+						<li><a href=""><i class="fa fa-angle-double-right"></i>About us</a></li>
+						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+					</ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4 footeradd">
+					<h5>ChakriPao Job search</h5>
+					<P>Address:- BN- A240/356, Minto Bypass Road ABC Nagar,</P><p>District- Jarvisgunj</p>
+        </div>
+        
+      </div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
+						<li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+				<hr>
+			</div>	
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					<p><u><a href="">ChakriPao JOB search</a></u> is a job search portal, Inc. Jarvis [a wholly owned subsidiary of Aakash Jaj]</p>
+					<p class="h6">© 2019 ChakriPao JOB portal. All rights reserved | Design by Aakash Jaj<a class="text-green ml-2" href="https://www.linkedin.com/in/akash-kumar-a5232b126/" target="_blank">ShivaTech</a></p>
+				</div>
+				<hr>
+			</div>	
+		</div>
+	</section>
+	 ./Footer -->
+

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {MatPaginator,MatTableDataSource} from '@angular/material';
 import {PageEvent} from "@angular/material/paginator"
 import { stringify } from '@angular/compiler/src/util';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-jobsearch',
@@ -20,11 +21,11 @@ export class JobsearchComponent implements OnInit {
   jobsearchForm:FormGroup;
   currentDate: Date = new Date();
   
-  showSpinner=false;
+  showSpinner=true;
   p: number = 1;
   count: number = 6;
 
-  constructor(private router:Router,private jobService:JobsearchService,private formbuilder: FormBuilder,private infoservice:InformationService){}
+  constructor(private spinnerService: Ng4LoadingSpinnerService,private router:Router,private jobService:JobsearchService,private formbuilder: FormBuilder,private infoservice:InformationService){}
    
   getJob(){
     let location:string="Bangalore";
@@ -43,9 +44,11 @@ export class JobsearchComponent implements OnInit {
 
   }
   async jobsearch(){
-    this.showSpinner=true;
-    setTimeout(()=>{
-      this.showSpinner=false;},3000);
+    // this.showSpinner=true;
+    // setTimeout(()=>{
+    //   this.showSpinner=false;},6000);
+    this.spinnerService.show();
+    setTimeout(()=>this.showSpinner=false,3000)
     
     this.filterjob = await this.jobService.getJobs().toPromise();
     this.infoservice.jobs(this.filterjob);

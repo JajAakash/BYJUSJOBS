@@ -1,17 +1,18 @@
-
+<!-- 
 <nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
     <div class="container-fluid" >
       <div class="navbar-header" >
           <a href="jobs" class="pull-left"><img src="assets/logobyjus.png"></a> 
       </div>
     </div>
-</nav>
-
-<div class="alert alert-light" role="alert" *ngIf="jobList?.length >0">
+</nav> -->
+<!-- <mat-spinner class="spin spinner" *ngIf="!showSpinner"></mat-spinner> -->
+<ng4-loading-spinner *ngIf="showSpinner"> </ng4-loading-spinner>
+<div class="alert alert-light" role="alert" *ngIf="jobList?.length >0 && !showSpinner">
     <strong>Congratulation!</strong>&nbsp;{{jobList.length}} Jobs found for You!!
   </div>
 
-<div class="container-fluid col-md-11" *ngIf="jobList?.length >2">
+<div class="container-fluid col-md-11" *ngIf="jobList?.length >2 && !showSpinner">
   <div class="row">
     <div class="card">
       <div class="card-body">
@@ -43,7 +44,7 @@
   </div>
 </div>
 
-<div class="container-fluid col-md-9" *ngIf="jobList?.length <=2">
+<div class="container-fluid col-md-9" *ngIf="jobList?.length <=2 && !showSpinner">
     <div class="row" >
       <div class="card col-lg-6" *ngFor="let item of jobList">
         
@@ -70,21 +71,51 @@
     </div>
   </div>
   
-
-
-<!-- <div class="col-sm-4" *ngFor="let item of jobList">
-    <div class="card">
-        <div class="card-body">
-            <div class="company-title"><h5 class="card-title">{{item.title}}</h5><br></div>
-            <div><h6 class="card-subtitle mb-2 text-muted cardicon"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;{{item.companyname}}</h6></div>
-            <p class="loc-sal"><i class="fa fa-map-marker cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.location}}</p>
-            <p class="loc-sal"><i class="fa fa-money cardicon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;{{item.salary}} </p>
-            <div><button class="btn btn-footer" type="submit">Apply</button>
-              <div class="create pull-right underline-small">Posted:&nbsp;{{item.created}}</div>
+  <section id="footer" *ngIf="!showSpinner">
+    <div class="container-fluid">
+        <div class="row text-center text-xs-center text-sm-left text-md-left" style="margin-left: 0.8rem">
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <h5>Search Your Job</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Find Jobs</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Post Jobs</a></li>
+                </ul>
             </div>
-        </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <h5>Stay Connected</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Contact us</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>About us</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+                </ul>
     </div>
-  </div> -->
 
-
-  
+    <div class="col-xs-12 col-sm-4 col-md-4 footeradd">
+                <h5>ChakriPao Job search</h5>
+                <P>Address:- BN- A240/356, Minto Bypass Road ABC Nagar,</P><p>District- Jarvisgunj</p>
+    </div>
+    
+  </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                <ul class="list-unstyled list-inline social text-center">
+                    <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
+                    <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>	
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p><u><a href="">ChakriPao JOB search</a></u> is a job search portal, Inc. Jarvis [a wholly owned subsidiary of Aakash Jaj]</p>
+                <p class="h6">© 2019 ChakriPao JOB portal. All rights reserved | Design by Aakash Jaj<a class="text-green ml-2" href="https://www.linkedin.com/in/akash-kumar-a5232b126/" target="_blank">ShivaTech</a></p>
+            </div>
+            <hr>
+        </div>	
+    </div>
+</section>
+<!-- ./Footer -->

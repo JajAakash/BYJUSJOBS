@@ -1,13 +1,3 @@
-<nav class="navbar navbar-default" style="border: 1px solid whitesmoke">
-    <div class="container-fluid" >
-      <div class="navbar-header" >
-          <a href="#" class="pull-left"><img src="assets/logobyjus.png"></a>
-      </div>
-      <a href="/postJobs" class="pull-right"><button type="button" class="btn navpost-btn pull-right" style="margin-right: 0ex"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Post your job</button> </a>
-      <!-- <a href="http://localhost:5000/auth/logout">Sign In with Google</a> -->
-    </div>
-</nav>
-
 <div class="container-fluid col-md-10">
     <div class="row">
         <div class="card" style="margin-top: 15px;width: 100% ">
@@ -15,6 +5,7 @@
                 <h4 class="t-24 t-black t-light display-flex justify-center pb4">
                     Search your dream Jobs...
                 </h4>
+                
                 <form [formGroup]="jobsearchForm">
                     <div class="row">
 
@@ -51,7 +42,9 @@
             </div>
         </div>
         
-        <mat-spinner class="spin spinner" *ngIf="showSpinner"></mat-spinner>
+        <!-- <mat-spinner class="spin spinner" *ngIf="showSpinner"></mat-spinner> -->
+        <!-- <ng4-loading-spinner *ngIf="showSpinner"></ng4-loading-spinner> -->
+        <ng4-loading-spinner *ngIf="showSpinner"> </ng4-loading-spinner>
         
         <div class="card" style="margin-top: 1.5rem" *ngIf="!showSpinner">
                 <div class="card-body" >
@@ -94,8 +87,55 @@
                 </div>
         </div>
     </div>
-          
-          
-      
     
 </div>
+
+<section id="footer" *ngIf="!showSpinner">
+    <div class="container-fluid">
+        <div class="row text-center text-xs-center text-sm-left text-md-left" style="margin-left: 0.8rem">
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <h5>Search Your Job</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Find Jobs</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Post Jobs</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <h5>Stay Connected</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>Contact us</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>About us</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+                </ul>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-4 footeradd">
+                <h5>ChakriPao Job search</h5>
+                <P>Address:- BN- A240/356, Minto Bypass Road ABC Nagar,</P><p>District- Jarvisgunj</p>
+    </div>
+    
+  </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                <ul class="list-unstyled list-inline social text-center">
+                    <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
+                    <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>	
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p><u><a href="">ChakriPao JOB search</a></u> is a job search portal, Inc. Jarvis [a wholly owned subsidiary of Aakash Jaj]</p>
+                <p class="h6">© 2019 ChakriPao JOB portal. All rights reserved | Design by Aakash Jaj<a class="text-green ml-2" href="https://www.linkedin.com/in/akash-kumar-a5232b126/" target="_blank">ShivaTech</a></p>
+            </div>
+            <hr>
+        </div>	
+    </div>
+</section>
+<!-- ./Footer -->
+

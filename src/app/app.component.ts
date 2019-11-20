@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SigninAuthService} from './signin-auth/signin-auth.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'BYJUSJOBS';
+  title = 'Chakripao';
+
+  constructor(private signinServ:SigninAuthService) { }
 }
+

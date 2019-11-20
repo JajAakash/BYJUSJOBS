@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from '../information.service';
 import { JobApplyService } from './job-apply.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
@@ -10,10 +11,17 @@ export class JobApplyComponent implements OnInit {
   jobDetails:any;
   experience:string;
   currentDate: Date = new Date();
+  showSpinner=true;
+  //private spinnerService: Ng4LoadingSpinnerService if will use spinner 
   
-  constructor(private infoservice:InformationService,private applyService:JobApplyService) { }
+  constructor(private spinnerService: Ng4LoadingSpinnerService,private infoservice:InformationService,private applyService:JobApplyService) { }
+
 
   async jobs(){
+
+    this.spinnerService.show();
+    setTimeout(()=>this.showSpinner=false,3000)
+
     if(this.infoservice.jobid!=undefined){
       this.jobDetails= await this.applyService.jobApplyService().toPromise();
     }
@@ -32,9 +40,10 @@ export class JobApplyComponent implements OnInit {
         this.jobDetails.noOfMonths=noOfMonths;
         sessionStorage.setItem('jobDetails',JSON.stringify(this.jobDetails))
   }
-  
+
+ 
   ngOnInit() {
-    this.jobs();
+  this.jobs();
   }
 
 }

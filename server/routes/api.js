@@ -1,4 +1,6 @@
 var capitalizecase= require('../converter/converter')
+//var verifyUser= require('../converter/converter')
+const jwt=require('jsonwebtoken')
 
 const express =require ('express');
 const router =express.Router();
@@ -16,32 +18,30 @@ mongoose.connect(url,function(err){
     }
 });
 
-
-
-
-router.get('/jobs',function(req,res){
-    Jobs.find({}).exec(function(err,jobs){
+router.get('/jobs',(req,res)=>{
+        Jobs.find({}).exec(function(err,jobs){
         if(err){
             console.log("Error fetching while jobs")
         }else{
             res.json(jobs)
         }
     })
+    
 });
 
-
-router.get('/jobs/:id',function(req,res){
+router.get('/jobs/:id',verifyUser,(req,res)=>{
+    jwt.verify(req.token , 'secretkey' ,(err,authData)=>{
     Jobs.findById(req.params.id).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your jobs")
         }else{
             res.json(jobs)
         }
-    })
+    })})
 });
 
+router.get('/jobsin/:location',verifyUser,(req,res)=>{
 
-router.get('/jobsin/:location',function(req,res){
     Jobs.find({location:capitalizecase(req.params.location.trim())}).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
@@ -51,8 +51,7 @@ router.get('/jobsin/:location',function(req,res){
     })
 });
 
-
-router.get('/jobs-for/:skills',function(req,res){
+router.get('/jobs-for/:skills',verifyUser,function(req,res){
     Jobs.find({skills:capitalizecase(req.params.skills.trim())}).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
@@ -63,7 +62,7 @@ router.get('/jobs-for/:skills',function(req,res){
 });
 
 //double Parameter
-router.get('/jobs/:skills/:location',function(req,res){
+router.get('/jobs/:skills/:location',verifyUser,function(req,res){
     Jobs.find({ $and: [ { location:capitalizecase(req.params.location.trim())}, { skills: capitalizecase(req.params.skills.trim())} ] }).exec(function(err,jobs){
         if(err){
             console.log("error while fetching your job Details")
@@ -74,7 +73,7 @@ router.get('/jobs/:skills/:location',function(req,res){
 });
 
 //location Experience
-router.get('/exp/loc/:experience/:location',function(req,res){
+router.get('/exp/loc/:experience/:location',verifyUser,function(req,res){
     var exp=parseInt(req.params.experience)
     Jobs.find({ $and: [ { location:capitalizecase(req.params.location.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]}] }).exec(function(err,jobs){
         if(err){
@@ -85,9 +84,8 @@ router.get('/exp/loc/:experience/:location',function(req,res){
     })
 });
 
-
 //user input skill + experience
-router.get('/skill/exp/:experience/:skills',function(req,res){
+router.get('/skill/exp/:experience/:skills',verifyUser,function(req,res){
     var exp=parseInt(req.params.experience)
     
     Jobs.find({ $and: [{ skills: capitalizecase(req.params.skills.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]} ] }).exec(function(err,jobs){
@@ -99,9 +97,8 @@ router.get('/skill/exp/:experience/:skills',function(req,res){
     })
 });
 
-
 //all params
-router.get('/jobs/:skills/:location/:experience',function(req,res){
+router.get('/jobs/:skills/:location/:experience',verifyUser,function(req,res){
     var exp=parseInt(req.params.experience)
     Jobs.find({ $and: [ { location: capitalizecase(req.params.location.trim())}, { skills: capitalizecase(req.params.skills.trim())},{$or: [{experience:{$lt:exp}},{ experience: exp }]}]}).exec(function(err,jobs){
         if(err){
@@ -112,8 +109,7 @@ router.get('/jobs/:skills/:location/:experience',function(req,res){
     })
 });
 
-
-router.get('/jobs-experience/:experience',function(req,res){
+router.get('/jobs-experience/:experience',verifyUser,function(req,res){
     var exp=parseInt(req.params.experience)
     
     Jobs.find({ $and: [ { maxExp: { $gte:exp  } }, { minExp: { $lte:exp  } }] }).exec(function(err,jobs){
@@ -125,7 +121,7 @@ router.get('/jobs-experience/:experience',function(req,res){
     })
 });
 
-router.post('/job/listed',function(req,res){
+router.post('/job/listed',verifyUser,function(req,res){
     
     var postJob = new Jobs();
     postJob.title=capitalizecase(req.body.title);
@@ -163,12 +159,9 @@ router.post('/job/listed',function(req,res){
     {
         postJob.source=req.body.source;
     }
-
-    
     postJob.maxExp=req.body.experience[1];
     postJob.minExp=req.body.experience[0];
     postJob.experience=req.body.experience;
-    
     
     postJob.save(function(err,postedJob){
         if(err){
@@ -180,8 +173,6 @@ router.post('/job/listed',function(req,res){
     });
 
 });
-
-
 
 router.get('/google',passport.authenticate('google',{
     
@@ -196,6 +187,26 @@ router.get('/google',passport.authenticate('google',{
 router.get('/google/callback',passport.authenticate('google'),(req,res)=>{
     res.send(req.user);
 });
+
+function verifyUser(req, res, next){
+    if(! req.headers.authorization){
+        return res.status(401).send('unauthorized request')
+    }
+    let token =req.headers.authorization.split(' ')[1]
+
+    if(token==='null'){
+        return res.status(401).send('unauthorized request')
+    }
+    console.log("tokennnn", token, typeof token)
+    let payload=jwt.verify(token, 'secretkey')
+
+    if(! payload){
+        return res.status(401).send('unauthorized request')   
+    }
+
+    req.userId=payload.subject
+    next();
+}
 
 module.exports = router;
 
